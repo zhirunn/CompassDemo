@@ -23,8 +23,8 @@ public class FinancialInformationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financialinformation);
-        bank_statement_image = (ImageView) findViewById(R.id.bankstatementimage);
-        bank_statement_button = (Button) findViewById(R.id.bankstatementbutton);
+        bank_statement_image = findViewById(R.id.bankstatementimage);
+        bank_statement_button = findViewById(R.id.bankstatementbutton);
 
         bank_statement_button.setOnClickListener(new View.OnClickListener() {
             @Override
