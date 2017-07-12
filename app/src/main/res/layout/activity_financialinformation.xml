@@ -40,17 +40,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="240dp"
                 android:layout_height="150dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:layout_margin="10dp" />
 
             <Button
                 android:id="@+id/bankstatementbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Image"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:text="Select Image" />
 
         </LinearLayout>
     </ScrollView>
