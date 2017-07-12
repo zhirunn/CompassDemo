@@ -7,12 +7,12 @@ import android.os.Bundle;
  * Created by aspiree15 on 11/07/17.
  */
 
-public class InformationActivity extends Activity {
+public class PersonalInformationActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information);
+        setContentView(R.layout.activity_personalinformation);
     }
 
 }

@@ -32,26 +32,26 @@
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/firstname"
+                android:id="@+id/fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                android:hint="First Name" />
+                android:hint="Full Name*" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/lastname"
+                android:id="@+id/phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 android:textAlignment="center"
-                android:hint="Last Name" />
+                android:hint="Phone Number*" />
 
             <Space
                 android:layout_width="match_parent"
@@ -64,40 +64,53 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
-                android:hint="Email Address" />
+                android:hint="Email Address*" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/homenumber"
+                android:id="@+id/streetaddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone"
+                android:inputType="textPostalAddress"
                 android:textAlignment="center"
-                android:hint="Home Phone Number" />
+                android:hint="Street Address*" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
             <EditText
-                android:id="@+id/cellnumber"
+                android:id="@+id/placeofemployment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone"
+                android:inputType="text"
                 android:textAlignment="center"
-                android:hint="Cell Phone Number" />
+                android:hint="Place of Employment*" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <EditText
+                android:id="@+id/jobtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:hint="Job Title*" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="60dp" />
 
             <Button
-                android:id="@+id/updateinformation"
+                android:id="@+id/updatepersonalinformation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -105,11 +118,6 @@
                 android:text="Update" />
 
         </LinearLayout>
-
-
-
-
-
 
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
