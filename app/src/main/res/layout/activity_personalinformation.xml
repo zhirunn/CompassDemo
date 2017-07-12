@@ -27,10 +27,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
             <EditText
                 android:id="@+id/fullname"
                 android:layout_width="match_parent"
@@ -38,11 +34,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                android:hint="Full Name*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:hint="Full Name*"
+                android:layout_marginTop="30dp" />
 
             <EditText
                 android:id="@+id/phonenumber"
@@ -51,11 +44,8 @@
                 android:ems="10"
                 android:inputType="phone"
                 android:textAlignment="center"
-                android:hint="Phone Number*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:hint="Phone Number*"
+                android:layout_marginTop="30dp" />
 
             <EditText
                 android:id="@+id/email"
@@ -64,11 +54,8 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
-                android:hint="Email Address*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:hint="Email Address*"
+                android:layout_marginTop="30dp" />
 
             <EditText
                 android:id="@+id/streetaddress"
@@ -77,11 +64,8 @@
                 android:ems="10"
                 android:inputType="textPostalAddress"
                 android:textAlignment="center"
-                android:hint="Street Address*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:hint="Street Address*"
+                android:layout_marginTop="30dp" />
 
             <EditText
                 android:id="@+id/placeofemployment"
@@ -90,11 +74,8 @@
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:hint="Place of Employment*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:hint="Place of Employment*"
+                android:layout_marginTop="30dp" />
 
             <EditText
                 android:id="@+id/jobtitle"
@@ -103,11 +84,8 @@
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:hint="Job Title*" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:hint="Job Title*"
+                android:layout_marginTop="30dp" />
 
             <Button
                 android:id="@+id/updatepersonalinformation"
@@ -115,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="gravity"
-                android:text="Update" />
+                android:text="Update"
+                android:layout_marginTop="60dp" />
 
         </LinearLayout>
 
