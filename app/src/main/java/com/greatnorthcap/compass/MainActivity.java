@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
     public static final String SERVER_ADDRESS = "http://greatnorthcap.000webhostapp.com/";
-    Button login_button, register_button;
+    Button buttonLogin, buttonRegister;
 
 
     @Override
@@ -16,10 +16,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login_button = findViewById(R.id.login);
-        register_button = findViewById(R.id.register);
+        buttonLogin = findViewById(R.id.login);
+        buttonRegister = findViewById(R.id.register);
 
-        register_button.setOnClickListener(new View.OnClickListener() {
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
         });
 
 
-        login_button.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
