@@ -44,10 +44,17 @@
                 android:layout_margin="10dp" />
 
             <Button
-                android:id="@+id/bankstatementbutton"
+                android:id="@+id/bankstatementgallerybutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Image" />
+
+            <Button
+                android:id="@+id/bankstatementcamerabutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Take Picture" />
+
 
         </LinearLayout>
     </ScrollView>
