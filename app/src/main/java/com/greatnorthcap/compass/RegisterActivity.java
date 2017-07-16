@@ -28,12 +28,13 @@ public class RegisterActivity extends Activity {
     private WebServerStrings WebServer = new WebServerStrings();
 
     public static final String KEY_USERID = "UserID";
-    public static final String KEY_USERNAME = "UserName";
     public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_CONFIRMPASSWORD = "ConfirmPassword";
+    Random rand = new Random();
+    int number = (100000 + rand.nextInt(899999));
 
-    private EditText editTextUsername, editTextEmail, editTextPassword, editTextConfirmPassword;
+    private EditText editTextEmail, editTextPassword, editTextConfirmPassword;
     private Button buttonRegister;
 
     @Override
@@ -41,7 +42,6 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editTextUsername = findViewById(R.id.username);
         editTextEmail= findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         editTextConfirmPassword = findViewById(R.id.confirmpassword);
@@ -57,10 +57,7 @@ public class RegisterActivity extends Activity {
     }
 
     private void registerUser() {
-        Random rand = new Random();
-        int number = (100000 + rand.nextInt(899999));
         final String userid = Integer.toString(number);
-        final String username = editTextUsername.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String confirmpassword = editTextConfirmPassword.getText().toString().trim();
@@ -83,7 +80,6 @@ public class RegisterActivity extends Activity {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put(KEY_USERID, userid);
-                params.put(KEY_USERNAME, username);
                 params.put(KEY_EMAIL, email);
                 params.put(KEY_PASSWORD, password);
                 return params;
