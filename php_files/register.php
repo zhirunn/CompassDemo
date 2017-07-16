@@ -4,7 +4,7 @@
 		$email = $_POST['Email'];
 		$password = $_POST['Password'];
 		require_once "connect.php";
-		$sql = "INSERT INTO Users (UserID, Email, Password) VALUES ('$userid', '$password', '$email')";
+		$sql = "INSERT INTO Users (UserID, Email, Password) VALUES ('$userid', '$email', '$password')";
 		
 		if(mysqli_query($conn, $sql)) {
 			echo "Successfully Registered";

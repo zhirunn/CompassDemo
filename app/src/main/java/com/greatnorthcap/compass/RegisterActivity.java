@@ -31,8 +31,6 @@ public class RegisterActivity extends Activity {
     public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_CONFIRMPASSWORD = "ConfirmPassword";
-    Random rand = new Random();
-    int number = (100000 + rand.nextInt(899999));
 
     private EditText editTextEmail, editTextPassword, editTextConfirmPassword;
     private Button buttonRegister;
@@ -57,6 +55,8 @@ public class RegisterActivity extends Activity {
     }
 
     private void registerUser() {
+        Random rand = new Random();
+        int number = (100000 + rand.nextInt(899999));
         final String userid = Integer.toString(number);
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
