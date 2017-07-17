@@ -81,7 +81,7 @@ public class RegisterActivity extends Activity {
 
                 }){
             @Override
-            protected Map<String, String> getParams(){
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put(KEY_USERID, userid);
                 params.put(KEY_EMAIL, email);

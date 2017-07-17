@@ -18,6 +18,7 @@ https://www.tutorialspoint.com/android/android_php_mysql.htm
 https://www.youtube.com/watch?v=aRywXnWBaWQ
 https://www.youtube.com/watch?v=TMnQJKtmOd4&index=3&list=PLe60o7ed8E-Q7tqKNPnWFdUoeniqH_-A9
 https://developer.android.com/training/volley/index.html
+https://www.itsalif.info/content/android-volley-tutorial-http-get-post-put
 https://www.simplifiedcoding.net/android-volley-post-request-tutorial/
 https://www.simplifiedcoding.net/android-studio-volley-tutorial-to-create-a-login-application/
 https://www.simplifiedcoding.net/android-login-example-using-php-mysql-and-volley/
