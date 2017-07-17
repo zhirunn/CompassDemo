@@ -30,7 +30,9 @@ public class WebServerStrings {
     }
     */
 
+    private static final String SERVER_ADDRESS = "http://greatnorthcap.000webhostapp.com/";
     private static final String REGISTER_URL = "https://greatnorthcap.000webhostapp.com/PHP/register.php";
+    private static final String LOGIN_URL = "https://greatnorthcap.000webhostapp.com/PHP/login.php";
 
     public WebServerStrings() {
     }

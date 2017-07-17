@@ -9,6 +9,7 @@
     tools:layout_editor_absoluteX="0dp">
 
     <ImageView
+        android:contentDescription="@string/compasslogo"
         android:id="@+id/compassLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:hint="Email Address"
         android:textAlignment="center"
         tools:layout_constraintTop_creator="1"

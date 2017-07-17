@@ -5,10 +5,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
-    public static final String SERVER_ADDRESS = "http://greatnorthcap.000webhostapp.com/";
-    Button buttonLogin, buttonRegister;
+    private Button buttonLogin, buttonRegister;
+    private EditText editTextEmail, editTextPassword;
 
 
     @Override
