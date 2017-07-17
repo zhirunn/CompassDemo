@@ -5,12 +5,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 public class MainActivity extends Activity {
     private Button buttonLogin, buttonRegister;
-    private EditText editTextEmail, editTextPassword;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,22 +16,18 @@ public class MainActivity extends Activity {
 
         buttonLogin = findViewById(R.id.login);
         buttonRegister = findViewById(R.id.register);
-        editTextEmail = findViewById(R.id.email);
-        editTextPassword = findViewById(R.id.password);
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-            }
-        });
-
-
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this, FinancialInformationActivity.class));
             }
         });
     }

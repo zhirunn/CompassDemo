@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class RegisterActivity extends Activity {
 
-    private WebServerStrings WebServer = new WebServerStrings();
+    private UserSharedPref UserPref = new UserSharedPref();
 
     public static final String KEY_USERID = "UserID";
     public static final String KEY_EMAIL = "Email";
@@ -62,7 +62,7 @@ public class RegisterActivity extends Activity {
         final String password = editTextPassword.getText().toString().trim();
         final String confirmpassword = editTextConfirmPassword.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, WebServer.getRegisterURL(),
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getRegisterURL(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -77,8 +77,8 @@ public class RegisterActivity extends Activity {
 
                 }){
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<>();
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<>();
                 params.put(KEY_USERID, userid);
                 params.put(KEY_EMAIL, email);
                 params.put(KEY_PASSWORD, password);

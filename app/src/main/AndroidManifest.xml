@@ -21,7 +21,11 @@
             android:label="@string/app_name">
         </activity>
 
-        <activity android:name=".PersonalInformationActivity"
+        <activity android:name=".LoginActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <activity android:name=".UserProfileActivity"
             android:label="@string/app_name">
         </activity>
 
