@@ -104,5 +104,4 @@ public class LoginActivity extends Activity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 }
