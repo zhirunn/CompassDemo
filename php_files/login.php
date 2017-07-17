@@ -6,9 +6,11 @@
 		$sql = "SELECT * FROM Users WHERE Email = '$email' AND Password = '$password'";
 		$check = mysqli_fetch_array(mysqli_query($conn, $sql));
 		if(isset($check)) {
-			echo "Login Success";
+			ob_end_clean();
+			echo "Success";
 		} else {
-			echo "Login Failure";
+			ob_end_clean();
+			echo "Failure";
 		}
 		mysqli_close($conn);
 	}

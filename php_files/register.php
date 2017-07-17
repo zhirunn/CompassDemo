@@ -7,8 +7,10 @@
 		$sql = "INSERT INTO Users (UserID, Email, Password) VALUES ('$userid', '$email', '$password')";
 		
 		if(mysqli_query($conn, $sql)) {
+			ob_end_clean();
 			echo "Successfully Registered";
 		} else {
+			ob_end_clean();
 			echo "Registration could not be completed.";
 		}
 	} else {
