@@ -1,13 +1,17 @@
 package com.greatnorthcap.compass;
 
+import android.content.Context;
 import android.content.Intent;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
+    private UserSharedPref UserPref = new UserSharedPref();
     private Button buttonLogin, buttonRegister;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,19 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+
+        loggedIn = sharedPreferences.getBoolean(UserPref.getLoggedinSharedPref(), false);
+
+        if (loggedIn) {
+            Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+            startActivity(intent);
+        }
     }
 }
 

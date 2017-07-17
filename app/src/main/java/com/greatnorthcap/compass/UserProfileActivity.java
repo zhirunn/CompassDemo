@@ -1,21 +1,24 @@
 package com.greatnorthcap.compass;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
 /**
  * Created by aspiree15 on 16/07/17.
  */
 
-public class UserProfileActivity extends Activity {
+public class UserProfileActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
 
     private TextView textView;
@@ -25,7 +28,7 @@ public class UserProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userprofile);
 
-        textView = findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.textView);
 
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(UserPref.getEmailSharedPref(),"Not Available");
@@ -36,7 +39,7 @@ public class UserProfileActivity extends Activity {
     private void logoutUser(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setNegativeButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -45,12 +48,14 @@ public class UserProfileActivity extends Activity {
                         prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), false);
                         prefEditor.putString(UserPref.getEmailSharedPref(), "");
                         prefEditor.commit();
-                        Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+                        intent.setFlags(FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
+                        finish();
                     }
                 });
 
-        alertDialogBuilder.setNegativeButton("No",
+        alertDialogBuilder.setPositiveButton("No",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -63,7 +68,8 @@ public class UserProfileActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
         return true;
     }
 

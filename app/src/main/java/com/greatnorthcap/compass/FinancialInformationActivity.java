@@ -1,11 +1,12 @@
 package com.greatnorthcap.compass;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +15,7 @@ import android.widget.ImageView;
  * Created by aspiree15 on 11/07/17.
  */
 
-public class FinancialInformationActivity extends Activity {
+public class FinancialInformationActivity extends AppCompatActivity {
 
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
@@ -25,9 +26,9 @@ public class FinancialInformationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financialinformation);
-        imageViewBankStatement = findViewById(R.id.bankstatementimage);
-        buttonBankStatementGallery = findViewById(R.id.bankstatementgallerybutton);
-        buttonBankStatementCamera = findViewById(R.id.bankstatementcamerabutton);
+        imageViewBankStatement = (ImageView) findViewById(R.id.bankstatementimage);
+        buttonBankStatementGallery = (Button) findViewById(R.id.bankstatementgallerybutton);
+        buttonBankStatementCamera = (Button) findViewById(R.id.bankstatementcamerabutton);
 
         buttonBankStatementGallery.setOnClickListener(new View.OnClickListener() {
             @Override

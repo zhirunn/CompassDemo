@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
 
         loggedIn = sharedPreferences.getBoolean(UserPref.getLoggedinSharedPref(), false);
 
-        if(loggedIn){
+        if (loggedIn) {
             Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
             startActivity(intent);
         }
@@ -81,6 +81,7 @@ public class LoginActivity extends Activity {
                             prefEditor.commit();
                             Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
                             startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
                         }

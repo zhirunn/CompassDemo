@@ -1,6 +1,7 @@
 package com.greatnorthcap.compass;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -67,6 +68,9 @@ public class RegisterActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(RegisterActivity.this,response,Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
