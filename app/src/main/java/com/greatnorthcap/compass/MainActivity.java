@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
 
         buttonLogin = findViewById(R.id.login);
         buttonRegister = findViewById(R.id.register);
+        editTextEmail = findViewById(R.id.email);
+        editTextPassword = findViewById(R.id.password);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
