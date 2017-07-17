@@ -22,16 +22,32 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Discover an easier way to borrow money without the big fees."
+        android:textSize="26sp"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@+id/compassLogo"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        tools:layout_constraintLeft_creator="1" />
+
     <Button
         android:id="@+id/login"
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:text="Log In"
-        android:layout_marginEnd="30dp"
         app:layout_constraintRight_toLeftOf="@+id/register"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="103dp" />
 
     <Button
@@ -39,8 +55,8 @@
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:text="Register"
-        android:layout_marginEnd="51dp"
         tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="51dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/login"
         tools:layout_constraintBaseline_creator="1" />
