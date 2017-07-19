@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,7 +78,7 @@ public class LoginActivity extends Activity {
         StringRequest stringRequest = new StringRequest(dataurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                getUIDJSON(response);
+                final String userid = getUIDJSON(response);
             }
         },
                 new Response.ErrorListener() {
@@ -99,7 +100,7 @@ public class LoginActivity extends Activity {
                             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                             prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), true);
                             prefEditor.putString(UserPref.getEmailSharedPref(), email);
-                            //prefEditor.putString(UserPref.getUserId(), );
+                            //prefEditor.putString(UserPref.getUserId(), userid);
                             prefEditor.commit();
                             Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
                             startActivity(intent);
