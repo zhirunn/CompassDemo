@@ -131,7 +131,7 @@ public class LoginActivity extends Activity {
         String UID = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray(UserPref.getDatauseridUrl());
+            JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
             JSONObject UserData = result.getJSONObject(0);
             UID = UserData.getString(UserPref.getUserId());
 
