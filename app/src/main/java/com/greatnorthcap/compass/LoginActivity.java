@@ -18,6 +18,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,16 +72,34 @@ public class LoginActivity extends Activity {
     private void loginUser(){
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+        final String dataurl = UserPref.getDatauseridUrl() + email;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
+        StringRequest stringRequest = new StringRequest(dataurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                getUIDJSON(response);
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.equalsIgnoreCase(UserPref.getLoginSuccess())){
+                        if(response.equalsIgnoreCase(UserPref.getLoginSuccess())) {
                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
                             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                             prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), true);
                             prefEditor.putString(UserPref.getEmailSharedPref(), email);
+                            //prefEditor.putString(UserPref.getUserId(), );
                             prefEditor.commit();
                             Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
                             startActivity(intent);
@@ -101,7 +123,20 @@ public class LoginActivity extends Activity {
                 return params;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest2);
+    }
+
+    public String getUIDJSON(String response) {
+        String UID = "";
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray result = jsonObject.getJSONArray(UserPref.getDatauseridUrl());
+            JSONObject UserData = result.getJSONObject(0);
+            UID = UserData.getString(UserPref.getUserId());
+
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return UID;
     }
 }
