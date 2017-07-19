@@ -28,3 +28,4 @@ https://stackoverflow.com/questions/29367876/how-to-use-primary-key-in-shared-pr
 https://www.simplifiedcoding.net/android-volley-tutorial-to-get-json-from-server/
 https://www.simplifiedcoding.net/retrieve-data-from-mysql-database-in-android-using-volley/
 https://stackoverflow.com/questions/28120029/how-can-i-return-value-from-function-onresponse-of-volley
+https://www.simplifiedcoding.net/filter-json-data-android/

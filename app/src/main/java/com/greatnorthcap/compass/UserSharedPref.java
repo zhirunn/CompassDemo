@@ -38,7 +38,7 @@ public class UserSharedPref {
     public String getDatauseridUrl() {
         return DATAUSERID_URL;
     }
-    public String getUserId() {
+    public String getKeyUserId() {
         return USER_ID;
     }
     public String getKeyEmail() {

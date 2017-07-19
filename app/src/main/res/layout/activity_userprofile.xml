@@ -10,4 +10,11 @@
         android:text="There is no user currently logged in"
         android:id="@+id/displayuser" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="There is no user currently logged in"
+        android:id="@+id/displayuserID" />
+
 </LinearLayout>

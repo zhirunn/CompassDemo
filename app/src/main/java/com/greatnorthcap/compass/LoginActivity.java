@@ -75,18 +75,32 @@ public class LoginActivity extends Activity {
         final String password = editTextPassword.getText().toString().trim();
         final String dataurl = UserPref.getDatauseridUrl() + email;
 
-        StringRequest stringRequest = new StringRequest(dataurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                final String userid = getUIDJSON(response);
-            }
-        },
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataurl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //if(response.equalsIgnoreCase(UserPref.getLoginSuccess())) {
+                            final String userid = getUIDJSON(response).trim();
+                            //SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                            //SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                            //prefEditor.putString(UserPref.getKeyUserId(), userid);
+                            //prefEditor.commit();
+                        //}
+                    }
+                },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(LoginActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
-                });
+                }){
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            //params.put(UserPref.getKeyUserId(), userid);
+            return params;
+        }
+    };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
@@ -96,7 +110,7 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         if(response.equalsIgnoreCase(UserPref.getLoginSuccess())) {
-                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
                             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                             prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), true);
                             prefEditor.putString(UserPref.getEmailSharedPref(), email);
@@ -133,8 +147,12 @@ public class LoginActivity extends Activity {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
             JSONObject UserData = result.getJSONObject(0);
-            UID = UserData.getString(UserPref.getUserId());
+            UID = UserData.getString(UserPref.getKeyUserId());
 
+            //SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+            //SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+            //prefEditor.putString(UserPref.getKeyUserId(), UID);
+            //prefEditor.commit();
         } catch (JSONException e){
             e.printStackTrace();
         }

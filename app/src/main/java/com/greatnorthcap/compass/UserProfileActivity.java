@@ -21,7 +21,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 public class UserProfileActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
 
-    private TextView textViewDisplayUser;
+    private TextView textViewDisplayUser, textViewDisplayUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,18 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_userprofile);
 
         textViewDisplayUser = (TextView) findViewById(R.id.displayuser);
+        textViewDisplayUserID = (TextView) findViewById(R.id.displayuserID);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(UserPref.getEmailSharedPref(),"Not Available");
+        String email = sharedPreferences.getString(UserPref.getEmailSharedPref(), "Not Available");
+        String email2 = sharedPreferences.getString(UserPref.getKeyEmail(), "Not Available");
+        String userid = sharedPreferences.getString(UserPref.getKeyUserId(), "Not Available");
 
-        textViewDisplayUser.setText("Current User: " + email);
+
+        textViewDisplayUser.setText("Current User: " + email2);
+        textViewDisplayUserID.setText("Current UserID: " + userid);
+
     }
 
     private void logoutUser(){
