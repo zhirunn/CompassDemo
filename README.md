@@ -1,3 +1,5 @@
+This program contains code which were taken from the following websites listed below.
+
 https://developer.android.com/training/basics/firstapp/index.html
 https://www.youtube.com/watch?v=jliH9hAQMOI
 https://www.raywenderlich.com/120177/beginning-android-development-tutorial-installing-android-studio
@@ -32,3 +34,5 @@ https://www.simplifiedcoding.net/filter-json-data-android/
 https://stackoverflow.com/questions/32619035/store-volley-request-data
 https://stackoverflow.com/questions/33228364/need-to-send-multiple-volley-requests-in-a-sequence
 http://mobilesiri.com/json-parsing-in-android-using-android-studio/
+https://www.simplifiedcoding.net/android-volley-tutorial-to-upload-image-to-server/
+https://www.simplifiedcoding.net/android-upload-image-to-server/

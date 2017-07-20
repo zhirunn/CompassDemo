@@ -2,7 +2,6 @@ package com.greatnorthcap.compass;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,20 +14,22 @@ import android.widget.ImageView;
  * Created by aspiree15 on 11/07/17.
  */
 
-public class FinancialInformationActivity extends AppCompatActivity {
+public class NintyDayBankStatementActivity extends AppCompatActivity {
 
+    private UserSharedPref UserPref = new UserSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     ImageView imageViewBankStatement;
-    Button buttonBankStatementGallery, buttonBankStatementCamera;
+    Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_financialinformation);
+        setContentView(R.layout.activity_nintydaybankstatement);
         imageViewBankStatement = (ImageView) findViewById(R.id.bankstatementimage);
         buttonBankStatementGallery = (Button) findViewById(R.id.bankstatementgallerybutton);
         buttonBankStatementCamera = (Button) findViewById(R.id.bankstatementcamerabutton);
+        buttonUploadBankStatement = (Button) findViewById(R.id.uploadbankstatementbutton);
 
         buttonBankStatementGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,14 @@ public class FinancialInformationActivity extends AppCompatActivity {
                 startActivityForResult(bank_statement_camera_intent, RESULT_BANK_STATEMENT_IMAGE_CAMERA);
             }
         });
+
+        buttonUploadBankStatement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadBankStatement();
+            }
+        });
+
     }
 
     @Override
@@ -58,6 +67,10 @@ public class FinancialInformationActivity extends AppCompatActivity {
             Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
             imageViewBankStatement.setImageBitmap(bitmapPhoto);
         }
+    }
+
+    private void uploadBankStatement() {
+
     }
 
 
