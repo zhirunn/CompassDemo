@@ -37,6 +37,18 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity android:name=".SearchActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".UserSearchActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".LoanSearchActivity"
+            android:label="@string/app_name">
+        </activity>
+
+
+
     </application>
     
     <uses-permission android:name="android.permission.INTERNET"/>

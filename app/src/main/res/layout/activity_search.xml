@@ -5,14 +5,14 @@
     android:weightSum="1">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.12"
         android:text="Search User" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonLoan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.12"

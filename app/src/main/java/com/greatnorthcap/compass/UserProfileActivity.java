@@ -1,6 +1,7 @@
 package com.greatnorthcap.compass;
 
 import android.app.AlertDialog;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -71,7 +72,10 @@ public class UserProfileActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
+    private void searchUser()
+    {
+        startActivity(new Intent(UserProfileActivity.this, SearchActivity.class));
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
