@@ -85,6 +85,10 @@ public class UserProfileActivity extends AppCompatActivity {
         if (id == R.id.menuLogout) {
             logoutUser();
         }
+        if (id == R.id.action_search)
+        {
+            searchUser();
+        }
         return super.onOptionsItemSelected(item);
     }
 }
