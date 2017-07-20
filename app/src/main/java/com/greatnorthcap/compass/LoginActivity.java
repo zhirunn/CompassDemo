@@ -74,25 +74,25 @@ public class LoginActivity extends Activity {
         final String password = editTextPassword.getText().toString().trim();
         final String dataurl = UserPref.getDatauseridUrl()+email;
 
-        StringRequest stringGetRequest = new StringRequest(dataurl,
+        StringRequest stringGetRequest = new StringRequest(Request.Method.GET, dataurl,
                 new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                String UserID;
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
-                    JSONObject UserData = result.getJSONObject(0);
-                    UserID = UserData.getString(UserPref.getKeyUserId());
-                    SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-                    prefEditor.putString(UserPref.getUseridSharedPref(), UserID);
-                    prefEditor.commit();
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        },
+                    @Override
+                    public void onResponse(String response) {
+                        String UserID;
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
+                            JSONObject UserData = result.getJSONObject(0);
+                            UserID = UserData.getString(UserPref.getKeyUserId());
+                            SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                            SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                            prefEditor.putString(UserPref.getUseridSharedPref(), UserID);
+                            prefEditor.commit();
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
