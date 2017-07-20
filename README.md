@@ -29,3 +29,5 @@ https://www.simplifiedcoding.net/android-volley-tutorial-to-get-json-from-server
 https://www.simplifiedcoding.net/retrieve-data-from-mysql-database-in-android-using-volley/
 https://stackoverflow.com/questions/28120029/how-can-i-return-value-from-function-onresponse-of-volley
 https://www.simplifiedcoding.net/filter-json-data-android/
+https://stackoverflow.com/questions/32619035/store-volley-request-data
+https://stackoverflow.com/questions/33228364/need-to-send-multiple-volley-requests-in-a-sequence

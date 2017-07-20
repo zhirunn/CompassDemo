@@ -18,11 +18,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,42 +65,11 @@ public class LoginActivity extends Activity {
         }
     }
 
-    private void loginUser(){
+    private void loginUser() {
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
-        final String dataurl = UserPref.getDatauseridUrl() + email;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dataurl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //if(response.equalsIgnoreCase(UserPref.getLoginSuccess())) {
-                            final String userid = getUIDJSON(response).trim();
-                            //SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-                            //SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-                            //prefEditor.putString(UserPref.getKeyUserId(), userid);
-                            //prefEditor.commit();
-                        //}
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
-                    }
-                }){
-        @Override
-        protected Map<String, String> getParams() throws AuthFailureError {
-            Map<String, String> params = new HashMap<>();
-            //params.put(UserPref.getKeyUserId(), userid);
-            return params;
-        }
-    };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -114,7 +78,6 @@ public class LoginActivity extends Activity {
                             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                             prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), true);
                             prefEditor.putString(UserPref.getEmailSharedPref(), email);
-                            //prefEditor.putString(UserPref.getUserId(), userid);
                             prefEditor.commit();
                             Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
                             startActivity(intent);
@@ -138,24 +101,7 @@ public class LoginActivity extends Activity {
                 return params;
             }
         };
-        requestQueue.add(stringRequest2);
-    }
-
-    public String getUIDJSON(String response) {
-        String UID = "";
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
-            JSONObject UserData = result.getJSONObject(0);
-            UID = UserData.getString(UserPref.getKeyUserId());
-
-            //SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-            //SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-            //prefEditor.putString(UserPref.getKeyUserId(), UID);
-            //prefEditor.commit();
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
-        return UID;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

@@ -36,10 +36,10 @@ public class UserProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(UserPref.getEmailSharedPref(), "Not Available");
         String email2 = sharedPreferences.getString(UserPref.getKeyEmail(), "Not Available");
-        String userid = sharedPreferences.getString(UserPref.getKeyUserId(), "Not Available");
+        String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
 
 
-        textViewDisplayUser.setText("Current User: " + email2);
+        textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);
 
     }
@@ -55,6 +55,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                         prefEditor.putBoolean(UserPref.getLoggedinSharedPref(), false);
                         prefEditor.putString(UserPref.getEmailSharedPref(), "");
+                        prefEditor.putString(UserPref.getUseridSharedPref(), "");
                         prefEditor.commit();
                         Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
                         intent.setFlags(FLAG_ACTIVITY_NO_HISTORY);

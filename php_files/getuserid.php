@@ -5,7 +5,7 @@
 	 	$sql = "SELECT * FROM Users WHERE Email='".$email."'";
 	 	$res = mysqli_fetch_array(mysqli_query($conn, $sql));
 	 	$result = array();
-	 	array_push($result,array(
+	 	array_push($result, array(
  			"Email"=>$res['Email'],
  			"UserID"=>$res['UserID'],
  			)

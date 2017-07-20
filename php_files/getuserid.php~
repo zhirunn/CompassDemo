@@ -10,7 +10,7 @@
  			"UserID"=>$res['UserID'],
  			)
  		);
- 		echo json_encode(array("result"=>$result));
+ 		echo json_encode(array("Result"=>$result));
  		mysqli_close($conn);
  	}
 ?>
