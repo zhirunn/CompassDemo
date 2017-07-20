@@ -1,4 +1,4 @@
-This program contains code which were taken from the following websites listed below /n
+This program contains code which were taken from the following websites listed below \n
 
 https://developer.android.com/training/basics/firstapp/index.html
 https://www.youtube.com/watch?v=jliH9hAQMOI
