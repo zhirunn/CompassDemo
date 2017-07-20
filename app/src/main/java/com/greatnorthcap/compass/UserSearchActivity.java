@@ -82,10 +82,10 @@ public class UserSearchActivity extends AppCompatActivity{
             for (int i=0; i < users.length();i++)
             {
                 JSONObject JO = users.getJSONObject(i);
-                userIds[i] = JO.getString(KEY_ID);
-                userEmails[i] = JO.getString(KEY_Email);
-                borrowerTypes[i] = JO.getString(borrowerType);
-                lenderTypes[i] = JO.getString(lenderType);
+                userIds[i] = "User ID: " + JO.getString(KEY_ID);
+                userEmails[i] = "User Email: " + JO.getString(KEY_Email);
+                borrowerTypes[i] = "Borrower Status: " + JO.getString(borrowerType);
+                lenderTypes[i] = "Lender Status: " + JO.getString(lenderType);
 
             }
             User ShowUsers = new User(this,userIds,userEmails,borrowerTypes,lenderTypes);
