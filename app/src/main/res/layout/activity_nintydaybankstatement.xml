@@ -55,6 +55,13 @@
                 android:layout_height="wrap_content"
                 android:text="Take Picture" />
 
+            <Button
+                android:id="@+id/uploadbankstatementbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload"
+                android:layout_marginTop="120dp" />
+
 
         </LinearLayout>
     </ScrollView>
