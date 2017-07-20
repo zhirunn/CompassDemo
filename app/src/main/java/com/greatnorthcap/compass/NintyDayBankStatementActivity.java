@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 public class NintyDayBankStatementActivity extends AppCompatActivity {
 
+    private UserSharedPref UserPref = new UserSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     ImageView imageViewBankStatement;

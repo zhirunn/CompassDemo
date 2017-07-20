@@ -1,0 +1,15 @@
+<?php
+	if($_SERVER['REQUEST_METHOD']=='POST') {
+		$image = $_POST['image'];
+		$name = $_POST['name'];
+	 	require_once "connect.php";
+	 	$sql ="SELECT id FROM volleyupload ORDER BY id ASC";
+	 	$res = mysqli_query($conn, $sql);
+		$id = 0;
+		while($row = mysqli_fetch_array($res)) {
+			$id = $row['id'];
+		}
+		
+
+
+?>

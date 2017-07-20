@@ -1,3 +1,5 @@
+This program contains code which were taken from the following websites listed below /n
+
 https://developer.android.com/training/basics/firstapp/index.html
 https://www.youtube.com/watch?v=jliH9hAQMOI
 https://www.raywenderlich.com/120177/beginning-android-development-tutorial-installing-android-studio
