@@ -33,7 +33,7 @@
             android:label="@string/app_name">
         </activity>
 
-        <activity android:name=".GetuseridtestActivity"
+        <activity android:name=".Getuserid_Test"
             android:label="@string/app_name">
         </activity>
 

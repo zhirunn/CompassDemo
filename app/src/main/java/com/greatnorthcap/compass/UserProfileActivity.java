@@ -32,12 +32,9 @@ public class UserProfileActivity extends AppCompatActivity {
         textViewDisplayUser = (TextView) findViewById(R.id.displayuser);
         textViewDisplayUserID = (TextView) findViewById(R.id.displayuserID);
 
-
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(UserPref.getEmailSharedPref(), "Not Available");
-        String email2 = sharedPreferences.getString(UserPref.getKeyEmail(), "Not Available");
         String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
-
 
         textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);

@@ -18,6 +18,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,8 +72,35 @@ public class LoginActivity extends Activity {
     private void loginUser() {
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+        final String dataurl = UserPref.getDatauseridUrl()+email;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
+        StringRequest stringGetRequest = new StringRequest(dataurl,
+                new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                String UserID;
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
+                    JSONObject UserData = result.getJSONObject(0);
+                    UserID = UserData.getString(UserPref.getKeyUserId());
+                    SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                    prefEditor.putString(UserPref.getUseridSharedPref(), UserID);
+                    prefEditor.commit();
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        StringRequest stringPostRequest = new StringRequest(Request.Method.POST, UserPref.getLoginURL(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -83,14 +114,14 @@ public class LoginActivity extends Activity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -102,6 +133,7 @@ public class LoginActivity extends Activity {
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringGetRequest);
+        requestQueue.add(stringPostRequest);
     }
 }

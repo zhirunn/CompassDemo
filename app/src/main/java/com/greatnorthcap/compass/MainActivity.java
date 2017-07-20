@@ -21,21 +21,21 @@ public class MainActivity extends Activity {
         buttonLogin = findViewById(R.id.login);
         buttonRegister = findViewById(R.id.register);
 
-        /*
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-        */
 
+        /*
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GetuseridtestActivity.class));
+                startActivity(new Intent(MainActivity.this, Getuserid_Test.class));
             }
         });
+        */
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override

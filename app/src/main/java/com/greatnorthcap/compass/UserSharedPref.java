@@ -15,7 +15,7 @@ public class UserSharedPref {
     private static final String REGISTER_URL = "https://greatnorthcap.000webhostapp.com/PHP/register.php";
     private static final String LOGIN_URL = "https://greatnorthcap.000webhostapp.com/PHP/login.php";
     private static final String DATAUSERID_URL = "https://greatnorthcap.000webhostapp.com/PHP/getuserid.php?Email=";
-    private static final String USER_ID = "UserID";
+    private static final String KEY_USER_ID = "UserID";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
     private static final String LOGIN_SUCCESS = "Success";
@@ -40,7 +40,7 @@ public class UserSharedPref {
         return DATAUSERID_URL;
     }
     public String getKeyUserId() {
-        return USER_ID;
+        return KEY_USER_ID;
     }
     public String getKeyEmail() {
         return KEY_EMAIL;

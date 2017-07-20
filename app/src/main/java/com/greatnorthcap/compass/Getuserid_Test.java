@@ -23,7 +23,7 @@ import org.json.JSONObject;
  * Created by aspiree15 on 19/07/17.
  */
 
-public class GetuseridtestActivity extends AppCompatActivity {
+public class Getuserid_Test extends AppCompatActivity {
 
     private EditText editTextId;
     private Button buttonGet;
@@ -35,7 +35,7 @@ public class GetuseridtestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_getuseridtest);
+        setContentView(R.layout.test_getuserid);
 
         editTextId = (EditText) findViewById(R.id.editTextId);
         buttonGet = (Button) findViewById(R.id.buttonGet);
@@ -70,7 +70,7 @@ public class GetuseridtestActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(GetuseridtestActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(Getuserid_Test.this,error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
 
