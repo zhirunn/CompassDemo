@@ -11,6 +11,7 @@ public class UserSharedPref {
     private static final String SEARCH_URL = "https://greatnorthcap.000webhostapp.com/user/_search?size=1000000";
     */
     private static final String ACCOUNTPROFILE_URL= "http://greatnorthcap.000webhostapp.com/PHP/accountprofile.php";
+    private static final String UPDATEINFORMATION_URL = "https://greatnorthcap.000webhostapp.com/PHP/information.php";
     private static final String SERVER_ADDRESS = "http://greatnorthcap.000webhostapp.com/";
     private static final String REGISTER_URL = "https://greatnorthcap.000webhostapp.com/PHP/register.php";
     private static final String LOGIN_URL = "https://greatnorthcap.000webhostapp.com/PHP/login.php";
@@ -25,6 +26,11 @@ public class UserSharedPref {
     private static final String SHARED_PREF_NAME = "SharedPref";
     private static final String USERID_SHARED_PREF = "UserID";
     private static final String EMAIL_SHARED_PREF = "Email";
+    private static final String FULLNAME_SHARED_PREF = "Full Name*";
+    private static final String PHONENUMBER_SHARED_PREF = "Phone Number*";
+    private static final String ADDRESS_SHARED_PREF = "Street Address*";
+    private static final String EMPLOYMENT_SHARED_PREF = "Place of Employment*";
+    private static final String JOBTITLE_SHARED_PREF = "Job Title*";
     private static final String LOGGEDIN_SHARED_PREF = "LoggedIn";
     private static final String JSON_ARRAY = "Result";
     private static final String borrowerType = "BorrowerType";
@@ -44,6 +50,7 @@ public class UserSharedPref {
     public String getEmployment() { return EMPLOYMENT;}
     public String getJOB_Title (){return JOB_Title;}
     public String getAccountprofileUrl() { return ACCOUNTPROFILE_URL;}
+    public String getUpdateinformationUrl() { return UPDATEINFORMATION_URL;}
     public String getSearchUserID() {return SEARCH_USER_ID;}
     public String getSearchEmail() {return SEARCH_EMAIL;}
     public String getborrowerType() {
@@ -88,6 +95,21 @@ public class UserSharedPref {
     }
     public String getEmailSharedPref() {
         return EMAIL_SHARED_PREF;
+    }
+    public String getFullnameSharedPref() {
+        return FULLNAME_SHARED_PREF;
+    }
+    public String getPhonenumberSharedPref() {
+        return PHONENUMBER_SHARED_PREF;
+    }
+    public String getAddressSharedPrefSharedPref() {
+        return ADDRESS_SHARED_PREF;
+    }
+    public String getEmploymentSharedPref() {
+        return EMPLOYMENT_SHARED_PREF;
+    }
+    public String getJobtitleSharedPref() {
+        return JOBTITLE_SHARED_PREF;
     }
     public String getLoggedinSharedPref() {
         return LOGGEDIN_SHARED_PREF;

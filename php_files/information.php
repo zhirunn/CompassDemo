@@ -6,11 +6,16 @@
         $address = $_POST['Address'];
         $employment = $_POST['Employment'];
         $jobtitle = $_POST['JobTitle'];
-        $photodocuments = $_POST['PhotoDocuments'];
 		require_once "connect.php";
-
-		$sql = "INSERT INTO AccountDetails (UserID, FullName,PhoneNumber,Address,Employment,JobTitle,PhotoDocuments) VALUES ('$userid','$fullname','$phonenumber','$address','$employment','$jobtitle','$photodocuments')";
-
+		$sql =
+		"INSERT INTO AccountDetails (UserID, FullName,PhoneNumber,Address,Employment,JobTitle)
+		VALUES ('$userid','$fullname','$phonenumber','$address','$employment','$jobtitle')
+		ON DUPLICATE KEY UPDATE
+		FullName=VALUES(FullName),
+		PhoneNumber=VALUES(PhoneNumber),
+		Address=VALUES(Address),
+		Employment=VALUES(Employment),
+		JobTitle=VALUES(JobTitle)";
 		if(mysqli_query($conn, $sql)) {
 			ob_clean();
 			echo "Successfully Uploaded";

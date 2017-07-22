@@ -3,6 +3,7 @@ package com.greatnorthcap.compass;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,15 +37,20 @@ public class AccountProfileActivity extends AppCompatActivity {
     private TextView TextViewAddress;
     private TextView TextViewEmployment;
     private TextView TextViewJobtitle;
+    private String Fullname;
+    private String PhoneNumber;
+    private String Address;
+    private String Employment;
+    private String JobTitle;
     public RequestQueue requestQueue = null;
     String ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_accountprofile);
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         ID = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
-        setContentView(R.layout.activity_accountprofile);
         TextViewID = (TextView) findViewById(R.id.textViewUserId);
         TextViewFullName = (TextView) findViewById(R.id.textViewFullName);
         TextViewAddress = (TextView) findViewById(R.id.textViewAddress);
@@ -52,7 +58,8 @@ public class AccountProfileActivity extends AppCompatActivity {
         TextViewEmployment = (TextView) findViewById(R.id.textViewEmployment);
         TextViewJobtitle = (TextView) findViewById(R.id.textJobTitle);
 
-SendRequest();
+        SendRequest();
+
     }
     protected void SendRequest()
     {
@@ -90,13 +97,26 @@ SendRequest();
             JSONArray JSONAr=  JSONobj.getJSONArray(UserPref.getJsonArray());
             JSONObject Row = JSONAr.getJSONObject(0);
 
-                TextViewID.setText("User ID: " + Row.getString("UserID"));
+            TextViewID.setText("User ID: " + Row.getString("UserID"));
             TextViewFullName.setText("Full Name: " + Row.getString("FullName"));
             TextViewPhoneNumber.setText("Phone Number: " + Row.getString("PhoneNumber"));
             TextViewAddress.setText("Address: " + Row.getString("Address"));
             TextViewEmployment.setText("Employment: " + Row.getString("Employment"));
             TextViewJobtitle.setText("Job Title: " + Row.getString("JobTitle"));
 
+            Fullname = Row.getString("FullName");
+            PhoneNumber = Row.getString("PhoneNumber");
+            Address = Row.getString("Address");
+            Employment = Row.getString("Employment");
+            JobTitle = Row.getString("JobTitle");
+            SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+            SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+            prefEditor.putString(UserPref.getFullnameSharedPref(), Fullname);
+            prefEditor.putString(UserPref.getPhonenumberSharedPref(), PhoneNumber);
+            prefEditor.putString(UserPref.getAddress(), Address);
+            prefEditor.putString(UserPref.getEmploymentSharedPref(), Employment);;
+            prefEditor.putString(UserPref.getJobtitleSharedPref(), JobTitle);
+            prefEditor.commit();
 
         }
         catch (JSONException e)

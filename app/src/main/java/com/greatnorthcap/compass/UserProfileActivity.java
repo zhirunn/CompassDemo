@@ -72,13 +72,17 @@ public class UserProfileActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-    private void searchUser()
+    private void search()
     {
         startActivity(new Intent(UserProfileActivity.this, SearchActivity.class));
     }
     private void accountProfile()
     {
         startActivity(new Intent(UserProfileActivity.this, AccountProfileActivity.class));
+    }
+    private void apply()
+    {
+        startActivity(new Intent(UserProfileActivity.this, ApplyActivity.class));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,11 +99,15 @@ public class UserProfileActivity extends AppCompatActivity {
         }
         if (id == R.id.action_search)
         {
-            searchUser();
+            search();
         }
         if( id==R.id.action_profile)
         {
 accountProfile();
+        }
+        if ( id==R.id.action_apply)
+        {
+apply();
         }
         return super.onOptionsItemSelected(item);
     }

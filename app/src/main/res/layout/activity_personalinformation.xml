@@ -48,16 +48,6 @@
                 android:layout_marginTop="30dp" />
 
             <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:textAlignment="center"
-                android:hint="Email Address*"
-                android:layout_marginTop="30dp" />
-
-            <EditText
                 android:id="@+id/streetaddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,6 +85,12 @@
                 android:textAlignment="gravity"
                 android:text="Update"
                 android:layout_marginTop="60dp" />
+
+            <Button
+                android:id="@+id/uploaddocuments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Documents" />
 
         </LinearLayout>
 
