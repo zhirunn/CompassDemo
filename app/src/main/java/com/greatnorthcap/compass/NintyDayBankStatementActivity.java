@@ -119,7 +119,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
 
     public String getStringImage(Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
 
         //The below code will go and convert the BLOB to a String.
