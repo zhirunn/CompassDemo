@@ -76,6 +76,10 @@ public class UserProfileActivity extends AppCompatActivity {
     {
         startActivity(new Intent(UserProfileActivity.this, SearchActivity.class));
     }
+    private void accountProfile()
+    {
+        startActivity(new Intent(UserProfileActivity.this, AccountProfileActivity.class));
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -92,6 +96,10 @@ public class UserProfileActivity extends AppCompatActivity {
         if (id == R.id.action_search)
         {
             searchUser();
+        }
+        if( id==R.id.action_profile)
+        {
+accountProfile();
         }
         return super.onOptionsItemSelected(item);
     }

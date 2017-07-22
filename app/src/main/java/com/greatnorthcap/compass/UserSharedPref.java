@@ -10,7 +10,7 @@ public class UserSharedPref {
     // Specifies the limit size of elastic search (its default = 10)
     private static final String SEARCH_URL = "https://greatnorthcap.000webhostapp.com/user/_search?size=1000000";
     */
-
+    private static final String ACCOUNTPROFILE_URL= "http://greatnorthcap.000webhostapp.com/PHP/accountprofile.php";
     private static final String SERVER_ADDRESS = "http://greatnorthcap.000webhostapp.com/";
     private static final String REGISTER_URL = "https://greatnorthcap.000webhostapp.com/PHP/register.php";
     private static final String LOGIN_URL = "https://greatnorthcap.000webhostapp.com/PHP/login.php";
@@ -29,9 +29,23 @@ public class UserSharedPref {
     private static final String JSON_ARRAY = "Result";
     private static final String borrowerType = "BorrowerType";
     private static final String lenderType = "LenderType";
-
+    private static final String SEARCH_USER_ID = "SearchUserID";
+    private static final String SEARCH_EMAIL = "SearchEmail";
+    private static final String FULL_NAME = "FullName";
+    private static final String PHONE_NUMBER= "PhoneNumber";
+    private static final String ADDRESS = "Address";
+    private static final String EMPLOYMENT = "Employment";
+    private static final String JOB_Title = "JobTitle";
     public UserSharedPref() {
     }
+    public String getFullName() { return FULL_NAME;}
+    public String getPhoneNumber() { return PHONE_NUMBER;}
+    public String getAddress () { return ADDRESS;}
+    public String getEmployment() { return EMPLOYMENT;}
+    public String getJOB_Title (){return JOB_Title;}
+    public String getAccountprofileUrl() { return ACCOUNTPROFILE_URL;}
+    public String getSearchUserID() {return SEARCH_USER_ID;}
+    public String getSearchEmail() {return SEARCH_EMAIL;}
     public String getborrowerType() {
         return borrowerType;
     }

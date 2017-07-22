@@ -12,4 +12,10 @@
         android:icon="@drawable/search_icon"
         android:title="search"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/account_icon"
+        android:title="profileinformation"
+        app:showAsAction="always"
+        />
 </menu>

@@ -32,8 +32,8 @@ public class UserSearchActivity extends AppCompatActivity{
     public static String[] borrowerTypes;
     public static String[] lenderTypes;
     public  String JSON_Array = UserPref.getJsonArray();
-    public  String KEY_ID = UserPref.getKeyUserId();
-    public String KEY_Email = UserPref.getKeyEmail();
+    public  String KEY_ID = UserPref.getSearchUserID();
+    public String KEY_Email = UserPref.getSearchEmail();
     public String borrowerType = UserPref.getborrowerType();
     public  String lenderType = UserPref.getlenderType();
     private JSONArray users = null;
