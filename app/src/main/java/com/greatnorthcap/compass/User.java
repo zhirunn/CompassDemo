@@ -30,12 +30,12 @@ public class User extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.list_view_layout, null, true);
-        TextView textViewuserId = (TextView) listViewItem.findViewById(R.id.textViewUserId);
-        TextView textViewEmail = (TextView) listViewItem.findViewById(R.id.textViewEmail);
-        TextView textViewBorrower = (TextView) listViewItem.findViewById(R.id.textViewBorrowerType);
-        TextView textViewLender = (TextView) listViewItem.findViewById(R.id.textViewLenderType);
+        TextView textViewuserId = listViewItem.findViewById(R.id.textViewUserId);
+        TextView textViewEmail = listViewItem.findViewById(R.id.textViewEmail);
+        TextView textViewBorrower = listViewItem.findViewById(R.id.textViewBorrowerType);
+        TextView textViewLender = listViewItem.findViewById(R.id.textViewLenderType);
         textViewuserId.setText("User ID: " + userIds[position]);
-        textViewEmail.setText("User Email: " +userEmails[position]);
+        textViewEmail.setText("User Email: " + userEmails[position]);
         textViewBorrower.setText("Borrower Status: " + borrowerTypes[position]);
         textViewLender.setText("Lender Status: " + lenderTypes[position]);
         return listViewItem;

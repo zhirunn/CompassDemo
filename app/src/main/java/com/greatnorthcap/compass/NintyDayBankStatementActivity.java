@@ -6,9 +6,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Created by aspiree15 on 11/07/17.
@@ -19,6 +33,10 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
+    private Bitmap bitmap;
+    private EditText editTextName;
+    private String KEY_IMAGE = "image"; //not sure if should be here
+    private String KEY_NAME = "name";   //or in UserSharedPref
     ImageView imageViewBankStatement;
     Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
 
@@ -60,17 +78,52 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RESULT_BANK_STATEMENT_IMAGE_GALLERY && resultCode == RESULT_OK && data!=null) {
-            Uri selectedImage = data.getData();
-            imageViewBankStatement.setImageURI(selectedImage);
+            try {
+                Uri selectedImage = data.getData();
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                imageViewBankStatement.setImageBitmap(bitmap);
+            } catch(IOException ex) {
+                throw new RuntimeException("The selected image size might be too large", ex);
+            }
         }
         if(requestCode == RESULT_BANK_STATEMENT_IMAGE_CAMERA && resultCode == RESULT_OK && data!=null) {
-            Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
-            imageViewBankStatement.setImageBitmap(bitmapPhoto);
+            bitmap = (Bitmap)data.getExtras().get("data");
+            imageViewBankStatement.setImageBitmap(bitmap);
         }
     }
 
     private void uploadBankStatement() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getImageuploadUrl(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(NintyDayBankStatementActivity.this, response , Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                String name = editTextName.getText().toString().trim();
+                Map<String,String> params = new Hashtable<>();
+                params.put(KEY_IMAGE, image);
+                params.put(KEY_NAME, name);
+                return params;
+            }
+        };
+    }
 
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
 

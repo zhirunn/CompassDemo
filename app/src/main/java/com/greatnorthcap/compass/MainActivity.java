@@ -36,13 +36,22 @@ public class MainActivity extends Activity {
             }
         });
         */
-
+        /*
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
+        */
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NintyDayBankStatementActivity.class));
+            }
+        });
+
     }
 
     @Override
