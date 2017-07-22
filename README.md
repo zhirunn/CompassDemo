@@ -36,3 +36,6 @@ https://stackoverflow.com/questions/33228364/need-to-send-multiple-volley-reques
 http://mobilesiri.com/json-parsing-in-android-using-android-studio/
 https://www.simplifiedcoding.net/android-volley-tutorial-to-upload-image-to-server/
 https://www.simplifiedcoding.net/android-upload-image-to-server/
+https://stackoverflow.com/questions/10618325/how-to-create-a-blob-from-bitmap-in-android-activity
+https://codexample.org/questions/229374/android-uploading-user-images-to-server-volley-blob.c
+https://stackoverflow.com/questions/42199014/android-uploading-user-images-to-server-volley-blob

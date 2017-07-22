@@ -9,15 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,9 +35,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     private Bitmap bitmap;
-    private EditText editTextName;
-    private String KEY_IMAGE = "image"; //not sure if should be here
-    private String KEY_NAME = "name";   //or in UserSharedPref
+    private String KEY_IMAGE = "image";
     ImageView imageViewBankStatement;
     Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
 
@@ -109,22 +108,23 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 String image = getStringImage(bitmap);
-                String name = editTextName.getText().toString().trim();
                 Map<String,String> params = new Hashtable<>();
                 params.put(KEY_IMAGE, image);
-                params.put(KEY_NAME, name);
                 return params;
             }
         };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     public String getStringImage(Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
+
+        //The below code will go and convert the BLOB to a String.
+        //
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-
-
 }
