@@ -42,6 +42,7 @@ public class UserSharedPref {
     private static final String ADDRESS = "Address";
     private static final String EMPLOYMENT = "Employment";
     private static final String JOB_Title = "JobTitle";
+    private static final String SEARCHEDID_SHARED_PREF = "SearchedID";
     public UserSharedPref() {
     }
     public String getFullName() { return FULL_NAME;}
@@ -114,6 +115,7 @@ public class UserSharedPref {
     public String getLoggedinSharedPref() {
         return LOGGEDIN_SHARED_PREF;
     }
+    public String getSearchedIDSharedPref() {return SEARCHEDID_SHARED_PREF;}
     public String getJsonArray() {
         return JSON_ARRAY;
     }

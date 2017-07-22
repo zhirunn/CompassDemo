@@ -51,6 +51,9 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity android:name=".SearchedAccountProfileActivity"
+            android:label="@string/app_name">
+        </activity>
         <activity android:name=".ApplyActivity"
             android:label="@string/app_name">
         </activity>

@@ -34,10 +34,10 @@ public class User extends ArrayAdapter<String> {
         TextView textViewEmail = (TextView) listViewItem.findViewById(R.id.textViewEmail);
         TextView textViewBorrower = (TextView) listViewItem.findViewById(R.id.textViewBorrowerType);
         TextView textViewLender = (TextView) listViewItem.findViewById(R.id.textViewLenderType);
-        textViewuserId.setText(userIds[position]);
-        textViewEmail.setText(userEmails[position]);
-        textViewBorrower.setText(borrowerTypes[position]);
-        textViewLender.setText(lenderTypes[position]);
+        textViewuserId.setText("User ID: " + userIds[position]);
+        textViewEmail.setText("User Email: " +userEmails[position]);
+        textViewBorrower.setText("Borrower Status: " + borrowerTypes[position]);
+        textViewLender.setText("Lender Status: " + lenderTypes[position]);
         return listViewItem;
     }
 }

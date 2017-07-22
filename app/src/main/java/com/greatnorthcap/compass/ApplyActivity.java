@@ -58,23 +58,24 @@ public class ApplyActivity extends AppCompatActivity {
         Address = sharedPreferences.getString(UserPref.getAddress(), "Null");
         Employment = sharedPreferences.getString(UserPref.getEmploymentSharedPref(), "Null");
         JobTitle = sharedPreferences.getString(UserPref.getJobtitleSharedPref(), "Null");
-         if(Fullname != "Null")
+        String check = "null";
+         if(!Fullname.equalsIgnoreCase( check))
         {
             editTextFullName.setText(Fullname);
         }
-        if(PhoneNumber != "Null")
+        if(!PhoneNumber.equalsIgnoreCase( check))
         {
             editTextPhoneNumber.setText(PhoneNumber);
         }
-        if(Address != "Null")
+        if(!Address.equalsIgnoreCase( check))
         {
             editTextAddress.setText(Address);
         }
-        if(Employment != "Null")
+        if(!Employment.equalsIgnoreCase( check))
         {
             editTextEmployment.setText(Employment);
         }
-        if(Fullname != "Null")
+        if(!Fullname.equalsIgnoreCase(check))
         {
             editTextJobTitle.setText(JobTitle);
         }

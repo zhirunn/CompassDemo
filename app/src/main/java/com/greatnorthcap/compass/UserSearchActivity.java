@@ -1,8 +1,14 @@
 package com.greatnorthcap.compass;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -45,8 +51,23 @@ public class UserSearchActivity extends AppCompatActivity{
         listViewusers = (ListView) findViewById(R.id.userslistView);
         SendRequest();
 
+        listViewusers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String SearchedID = userIds[position];
+                SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                prefEditor.putString(UserPref.getSearchedIDSharedPref(), SearchedID);
+                prefEditor.commit();
+                startActivity(new Intent(UserSearchActivity.this, SearchedAccountProfileActivity.class));
+
+
+            }
+        });
+
 
     }
+
     protected void SendRequest()
     {
         StringRequest stringGetRequest = new StringRequest(Request.Method.GET, UserPref.getUserSearchURL(),
@@ -82,10 +103,10 @@ public class UserSearchActivity extends AppCompatActivity{
             for (int i=0; i < users.length();i++)
             {
                 JSONObject JO = users.getJSONObject(i);
-                userIds[i] = "User ID: " + JO.getString(KEY_ID);
-                userEmails[i] = "User Email: " + JO.getString(KEY_Email);
-                borrowerTypes[i] = "Borrower Status: " + JO.getString(borrowerType);
-                lenderTypes[i] = "Lender Status: " + JO.getString(lenderType);
+                userIds[i] = JO.getString(KEY_ID);
+                userEmails[i] =  JO.getString(KEY_Email);
+                borrowerTypes[i] =  JO.getString(borrowerType);
+                lenderTypes[i] = JO.getString(lenderType);
 
             }
             User ShowUsers = new User(this,userIds,userEmails,borrowerTypes,lenderTypes);
