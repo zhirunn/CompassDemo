@@ -35,7 +35,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     private Bitmap bitmap;
-    private String KEY_IMAGE = "image";
+    private String KEY_IMAGE = "Image";
     ImageView imageViewBankStatement;
     Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
 

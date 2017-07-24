@@ -21,8 +21,8 @@ public class UserSharedPref {
     private static final String KEY_USER_ID = "UserID";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_NAME = "name";
+    private static final String KEY_IMAGE = "Image";
+    private static final String KEY_NAME = "Name";
     private static final String LOGIN_SUCCESS = "Success";
     private static final String SHARED_PREF_NAME = "SharedPref";
     private static final String USERID_SHARED_PREF = "UserID";
