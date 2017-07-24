@@ -52,6 +52,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bank_statement_gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                bank_statement_gallery_intent.setType("image/*");
                 startActivityForResult(bank_statement_gallery_intent, RESULT_BANK_STATEMENT_IMAGE_GALLERY);
             }
         });
@@ -60,6 +61,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bank_statement_camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                //bank_statement_camera_intent.setType("image/*");
                 startActivityForResult(bank_statement_camera_intent, RESULT_BANK_STATEMENT_IMAGE_CAMERA);
             }
         });
@@ -70,25 +72,17 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
                 uploadBankStatement();
             }
         });
-
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_BANK_STATEMENT_IMAGE_GALLERY && resultCode == RESULT_OK && data!=null) {
-            try {
-                Uri selectedImage = data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                imageViewBankStatement.setImageBitmap(bitmap);
-            } catch(IOException ex) {
-                throw new RuntimeException("The selected image size might be too large", ex);
-            }
-        }
-        if(requestCode == RESULT_BANK_STATEMENT_IMAGE_CAMERA && resultCode == RESULT_OK && data!=null) {
-            bitmap = (Bitmap)data.getExtras().get("data");
-            imageViewBankStatement.setImageBitmap(bitmap);
-        }
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+
+        //The below code will go and convert the BLOB to a String.
+        //
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
     private void uploadBankStatement() {
@@ -117,14 +111,22 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public String getStringImage(Bitmap bmp) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-
-        //The below code will go and convert the BLOB to a String.
-        //
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RESULT_BANK_STATEMENT_IMAGE_GALLERY && resultCode == RESULT_OK && data!=null) {
+            try {
+                Uri selectedImage = data.getData();
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                imageViewBankStatement.setImageBitmap(bitmap);
+            } catch(IOException ex) {
+                throw new RuntimeException("The selected image size might be too large", ex);
+            }
+        }
+        if(requestCode == RESULT_BANK_STATEMENT_IMAGE_CAMERA && resultCode == RESULT_OK && data!=null) {
+            bitmap = (Bitmap)data.getExtras().get("data");
+            imageViewBankStatement.setImageBitmap(bitmap);
+        }
     }
+
 }
