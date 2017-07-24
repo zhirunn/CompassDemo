@@ -2,15 +2,16 @@
 	if($_SERVER['REQUEST_METHOD']=='POST') {
 		$image = $_POST['image'];
 	 	require_once "connect.php";
-	 	$sql = "SELECT LoanID FROM Loans ORDER BY LoanID ASC";
+	 	$sql = "SELECT id FROM Test ORDER BY id ASC";
 	 	$res = mysqli_query($conn, $sql);
 		$id = 0;
 		while($row = mysqli_fetch_array($res)) {
 			$id = $row['id'];
 		}
-		$path = "uploads/$id.png";
-		$actualpath = "http://simplifiedcoding.16mb.com/PhotoUploadWithText/$path";
-		$sql = "INSERT INTO Loans (photo) VALUES ('$actualpath')";
+		//$path = "Images/$id.png";
+		$path = "Images/$id.jpg";
+		$actualpath = "https://greatnorthcap.000webhostapp.com/$path";
+		$sql = "INSERT INTO Test (image) VALUES ('$actualpath')";
 		if(mysqli_query($conn, $sql)) {
 			file_put_contents($path, base64_decode($image));
 			echo "Successfully Uploaded";

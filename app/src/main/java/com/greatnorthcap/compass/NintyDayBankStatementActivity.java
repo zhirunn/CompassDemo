@@ -96,13 +96,13 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, response , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NintyDayBankStatementActivity.this, response , Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
