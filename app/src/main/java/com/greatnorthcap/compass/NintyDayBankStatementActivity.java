@@ -90,7 +90,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, response , Toast.LENGTH_LONG).show();
+                        Toast.makeText(NintyDayBankStatementActivity.this, response, Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
