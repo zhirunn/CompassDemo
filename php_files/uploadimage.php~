@@ -11,7 +11,7 @@
 		//$path = "Images/$id.png";
 		$path = "Images/$id.jpg";
 		$actualpath = "https://greatnorthcap.000webhostapp.com/$path";
-		$sql = "INSERT INTO Test (image) VALUES ('$actualpath')";
+		$sql = "INSERT INTO Test (Image) VALUES ('$actualpath')";
 		if(mysqli_query($conn, $sql)) {
 			file_put_contents($path, base64_decode($image));
 			echo "Successfully Uploaded";

@@ -61,7 +61,6 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bank_statement_camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //bank_statement_camera_intent.setType("image/*");
                 startActivityForResult(bank_statement_camera_intent, RESULT_BANK_STATEMENT_IMAGE_CAMERA);
             }
         });
@@ -102,6 +101,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 String image = getStringImage(bitmap);
+                //Toast.makeText(NintyDayBankStatementActivity.this, image.toString(), Toast.LENGTH_LONG).show();
                 Map<String,String> params = new Hashtable<>();
                 params.put(KEY_IMAGE, image);
                 return params;
@@ -118,6 +118,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             try {
                 Uri selectedImage = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                //Toast.makeText(NintyDayBankStatementActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
                 imageViewBankStatement.setImageBitmap(bitmap);
             } catch(IOException ex) {
                 throw new RuntimeException("The selected image size might be too large", ex);
