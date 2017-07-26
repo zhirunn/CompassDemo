@@ -1,11 +1,11 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=='POST') {
-		$email = $_POST['Email'];
 		$fullname = $_POST['FullName'];
         $phonenumber = $_POST['PhoneNumber'];
         $address = $_POST['Address'];
         $employment = $_POST['Employment'];
         $jobtitle = $_POST['JobTitle'];
+        $userid = $_POST['UserID'];
 		require_once "connect.php";
 		$sql =
 		"INSERT INTO AccountDetails (UserID, FullName,PhoneNumber,Address,Employment,JobTitle)
@@ -23,7 +23,5 @@
 			ob_clean();
 			echo "Could not upload information";
 		}
-	} else {
-		echo "Unexpected Error.";
 	}
 ?>

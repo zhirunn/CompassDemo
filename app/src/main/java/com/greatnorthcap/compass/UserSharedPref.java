@@ -18,6 +18,8 @@ public class UserSharedPref {
     private static final String UPDATEINFORMATION_URL = "https://greatnorthcap.000webhostapp.com/PHP/information.php";
     private static final String ACCOUNTPROFILE_URL= "http://greatnorthcap.000webhostapp.com/PHP/accountprofile.php";
     private static final String IMAGEUPLOAD_URL = "https://greatnorthcap.000webhostapp.com/PHP/uploadimage.php";
+    private static final String INSERTBROKERLOAN_URL = "https://greatnorthcap.000webhostapp.com/PHP/insertbrokerloan.php";
+    private static final String BROKERLOANS_URL = "https://greatnorthcap.000webhostapp.com/PHP/brokerloans.php";
     private static final String KEY_USER_ID = "UserID";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
@@ -27,11 +29,6 @@ public class UserSharedPref {
     private static final String SHARED_PREF_NAME = "SharedPref";
     private static final String USERID_SHARED_PREF = "UserID";
     private static final String EMAIL_SHARED_PREF = "Email";
-    private static final String FULLNAME_SHARED_PREF = "Full Name";
-    private static final String PHONENUMBER_SHARED_PREF = "Phone Number";
-    private static final String ADDRESS_SHARED_PREF = "Street Address";
-    private static final String EMPLOYMENT_SHARED_PREF = "Place of Employment";
-    private static final String JOBTITLE_SHARED_PREF = "Job Title";
     private static final String LOGGEDIN_SHARED_PREF = "LoggedIn";
     private static final String SEARCHEDID_SHARED_PREF = "SearchedID";
     private static final String JSON_ARRAY = "Result";
@@ -47,6 +44,8 @@ public class UserSharedPref {
 
     public UserSharedPref() {
     }
+    public String getBrokerloansUrl() {return BROKERLOANS_URL;}
+    public String getInsertbrokerloanUrl(){return INSERTBROKERLOAN_URL;}
     public String getFullName() { return FULL_NAME;}
     public String getPhoneNumber() { return PHONE_NUMBER;}
     public String getAddress () { return ADDRESS;}
@@ -101,21 +100,6 @@ public class UserSharedPref {
     }
     public String getEmailSharedPref() {
         return EMAIL_SHARED_PREF;
-    }
-    public String getFullnameSharedPref() {
-        return FULLNAME_SHARED_PREF;
-    }
-    public String getPhonenumberSharedPref() {
-        return PHONENUMBER_SHARED_PREF;
-    }
-    public String getAddressSharedPref() {
-        return ADDRESS_SHARED_PREF;
-    }
-    public String getEmploymentSharedPref() {
-        return EMPLOYMENT_SHARED_PREF;
-    }
-    public String getJobtitleSharedPref() {
-        return JOBTITLE_SHARED_PREF;
     }
     public String getLoggedinSharedPref() {
         return LOGGEDIN_SHARED_PREF;

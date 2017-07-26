@@ -109,14 +109,6 @@ public class AccountProfileActivity extends AppCompatActivity {
             Address = Row.getString("Address");
             Employment = Row.getString("Employment");
             JobTitle = Row.getString("JobTitle");
-            SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-            SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-            prefEditor.putString(UserPref.getFullnameSharedPref(), Fullname);
-            prefEditor.putString(UserPref.getPhonenumberSharedPref(), PhoneNumber);
-            prefEditor.putString(UserPref.getAddress(), Address);
-            prefEditor.putString(UserPref.getEmploymentSharedPref(), Employment);;
-            prefEditor.putString(UserPref.getJobtitleSharedPref(), JobTitle);
-            prefEditor.commit();
 
         }
         catch (JSONException e)

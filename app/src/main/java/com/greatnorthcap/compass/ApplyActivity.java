@@ -1,6 +1,9 @@
 package com.greatnorthcap.compass;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,61 +27,41 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
+
 /**
  * Created by Dan on 7/22/2017.
  */
 
 public class ApplyActivity extends AppCompatActivity {
     private Button updateButton;
+    private Button createLoanButton;
+    private Button uploadDocumentsButton;
     private EditText editTextFullName;
     private EditText editTextPhoneNumber;
     private EditText editTextAddress;
     private EditText editTextEmployment;
     private EditText editTextJobTitle;
     private UserSharedPref UserPref = new UserSharedPref();
-    String Fullname;
-    String PhoneNumber;
-    String Address;
-    String Employment;
-    String JobTitle;
+    String Fullname = "null";
+    String PhoneNumber = "null";
+    String Address = "null";
+    String Employment = "null";
+    String JobTitle = "null";
     public RequestQueue requestQueue = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalinformation);
-        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         updateButton = (Button) findViewById(R.id.updatepersonalinformation);
         editTextFullName = (EditText) findViewById(R.id.fullname);
         editTextPhoneNumber = (EditText) findViewById(R.id.phonenumber);
         editTextAddress = (EditText) findViewById(R.id.streetaddress);
         editTextEmployment = (EditText) findViewById(R.id.placeofemployment);
         editTextJobTitle = (EditText) findViewById(R.id.jobtitle);
-       Fullname = sharedPreferences.getString(UserPref.getFullnameSharedPref(), "Null");
-        PhoneNumber = sharedPreferences.getString(UserPref.getPhonenumberSharedPref(), "Null");
-        Address = sharedPreferences.getString(UserPref.getAddress(), "Null");
-        Employment = sharedPreferences.getString(UserPref.getEmploymentSharedPref(), "Null");
-        JobTitle = sharedPreferences.getString(UserPref.getJobtitleSharedPref(), "Null");
-        String check = "null";
-         if(!Fullname.equalsIgnoreCase( check))
-        {
-            editTextFullName.setText(Fullname);
-        }
-        if(!PhoneNumber.equalsIgnoreCase( check))
-        {
-            editTextPhoneNumber.setText(PhoneNumber);
-        }
-        if(!Address.equalsIgnoreCase( check))
-        {
-            editTextAddress.setText(Address);
-        }
-        if(!Employment.equalsIgnoreCase( check))
-        {
-            editTextEmployment.setText(Employment);
-        }
-        if(!Fullname.equalsIgnoreCase(check))
-        {
-            editTextJobTitle.setText(JobTitle);
-        }
+        createLoanButton = (Button) findViewById(R.id.createloan);
+        uploadDocumentsButton = (Button) findViewById(R.id.uploaddocuments);
+        SendRequest();
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +74,23 @@ public class ApplyActivity extends AppCompatActivity {
                 updateInformation();
             }
         });
+        createLoanButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+            loanDialog();
+            }
+        });
+        uploadDocumentsButton.setOnClickListener( new View.OnClickListener()
+                                                  {
+                                                      @Override
+                                                      public  void onClick(View v) {
+                                                          startActivity(new Intent(ApplyActivity.this, BrokerLoanActivity.class));
+                                                      }
+
+                                                  }
+
+        );
 
     }
     private void updateInformation()
@@ -127,5 +127,129 @@ public class ApplyActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringGetRequest);
     }
+    protected void SendRequest()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        final String  ID = sharedPreferences.getString(UserPref.getKeyUserId(),"Null");
+        StringRequest stringGetRequest = new StringRequest(Request.Method.POST, UserPref.getAccountprofileUrl(),
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        ParseJSON(response);
+                    }
 
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+
+            }
+        }){            @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put(UserPref.getKeyUserId(), ID);
+            return params;
+        }} ;
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringGetRequest);
+
+    }
+
+    protected void loanDialog()
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to apply for a new loan?");
+        alertDialogBuilder.setNegativeButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    insertLoan();
+                    }
+                });
+
+        alertDialogBuilder.setPositiveButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void insertLoan()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        final String ID = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Null");
+        StringRequest stringGetRequest = new StringRequest(Request.Method.POST, UserPref.getInsertbrokerloanUrl(),
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Toast.makeText(ApplyActivity.this, response, Toast.LENGTH_SHORT).show();
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+
+            }
+        }){            @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put(UserPref.getKeyUserId(),ID);
+            return params;
+        }};
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringGetRequest);
+    }
+
+
+    protected void ParseJSON(String response)
+    {
+        JSONObject JSONobj = null;
+        try {
+            JSONobj = new JSONObject(response);
+            JSONArray JSONAr=  JSONobj.getJSONArray(UserPref.getJsonArray());
+            JSONObject Row = JSONAr.getJSONObject(0);
+            Fullname = Row.getString("FullName");
+            PhoneNumber = Row.getString("PhoneNumber");
+            Address = Row.getString("Address");
+            Employment = Row.getString("Employment");
+            JobTitle = Row.getString("JobTitle");
+            String check = "null";
+
+            if(!Fullname.equalsIgnoreCase( check))
+            {
+                editTextFullName.setText(Fullname);
+            }
+            if(!PhoneNumber.equalsIgnoreCase( check))
+            {
+                editTextPhoneNumber.setText(PhoneNumber);
+            }
+            if(!Address.equalsIgnoreCase( check))
+            {
+                editTextAddress.setText(Address);
+            }
+            if(!Employment.equalsIgnoreCase( check))
+            {
+                editTextEmployment.setText(Employment);
+            }
+            if(!Fullname.equalsIgnoreCase(check))
+            {
+                editTextJobTitle.setText(JobTitle);
+            }
+
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

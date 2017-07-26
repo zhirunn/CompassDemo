@@ -87,10 +87,16 @@
                 android:layout_marginTop="60dp" />
 
             <Button
+                android:id="@+id/createloan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply for loan" />
+
+            <Button
                 android:id="@+id/uploaddocuments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Upload Documents" />
+                android:text="Upload documents to loans" />
 
         </LinearLayout>
 

@@ -55,6 +55,9 @@
             android:label="@string/app_name">
         </activity>
         <activity android:name=".ApplyActivity"
+        android:label="@string/app_name">
+    </activity>
+        <activity android:name=".BrokerLoanActivity"
             android:label="@string/app_name">
         </activity>
 
