@@ -1,6 +1,6 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=='POST') {
-		$image = $_POST['image'];
+		$image = $_POST['Image'];
 	 	require_once "connect.php";
 	 	$sql = "SELECT id FROM Test ORDER BY id ASC";
 	 	$res = mysqli_query($conn, $sql);
@@ -14,9 +14,35 @@
 		$sql = "INSERT INTO Test (Image) VALUES ('$actualpath')";
 		if(mysqli_query($conn, $sql)) {
 			ob_end_clean();
-			file_put_contents($path, base64_decode($image));
+			file_put_contents("../$path", base64_decode($image));
 			echo "Successfully Uploaded";
 		}
 		mysqli_close($conn);
 	}
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
