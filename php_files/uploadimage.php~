@@ -14,7 +14,7 @@
 		$sql = "INSERT INTO Test (Image) VALUES ('$actualpath')";
 		if(mysqli_query($conn, $sql)) {
 			ob_end_clean();
-			file_put_contents("../Images/$path", base64_decode($image));
+			file_put_contents("../$path", base64_decode($image));
 			echo "Successfully Uploaded";
 		}
 		mysqli_close($conn);
