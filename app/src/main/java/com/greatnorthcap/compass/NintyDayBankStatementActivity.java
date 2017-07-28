@@ -90,12 +90,14 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(NintyDayBankStatementActivity.this, response, Toast.LENGTH_LONG).show();
+                        //an Intent should be used to change pages after the user successfully uploaded their image.
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(NintyDayBankStatementActivity.this, "Please Select An Image.", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override

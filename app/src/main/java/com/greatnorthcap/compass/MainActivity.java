@@ -28,29 +28,21 @@ public class MainActivity extends Activity {
             }
         });
 
-        /*
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Getuserid_Test.class));
-            }
-        });
-        */
-        /*
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
-        */
 
+        /*
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NintyDayBankStatementActivity.class));
             }
         });
+        */
 
     }
 
@@ -58,9 +50,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
-
         loggedIn = sharedPreferences.getBoolean(UserPref.getLoggedinSharedPref(), false);
-
         if (loggedIn) {
             Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
             startActivity(intent);

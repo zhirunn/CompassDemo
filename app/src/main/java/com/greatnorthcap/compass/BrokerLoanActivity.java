@@ -19,7 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,7 +83,7 @@ public class BrokerLoanActivity extends AppCompatActivity {
     }
     protected void ParseJSON(String response)
     {
-        JSONObject JSONobj = null;
+        JSONObject JSONobj;
         try {
             JSONobj = new JSONObject(response);
 
@@ -114,12 +113,9 @@ public class BrokerLoanActivity extends AppCompatActivity {
                 BorrowerID[i] = JO.getString("BorrowerID");
                 LenderID[i] = JO.getString("LenderID");
                 DateLastModified[i] = JO.getString("DateLastModified");
-
             }
-
             Loan ShowLoans = new Loan(this,LoanIds,AmountsApproved,APR,TermDate,PaymentDue,Principal,Interest,Status,BorrowerID,LenderID,DateLastModified);
             listViewBrokerLoans.setAdapter(ShowLoans);
-
         }
         catch (JSONException e)
         {

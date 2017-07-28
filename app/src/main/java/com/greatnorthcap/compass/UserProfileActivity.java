@@ -39,10 +39,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
         textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);
-
     }
 
-    private void logoutUser(){
+    private void logoutUser() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setNegativeButton("Yes",
@@ -103,11 +102,11 @@ public class UserProfileActivity extends AppCompatActivity {
         }
         if( id==R.id.action_profile)
         {
-accountProfile();
+            accountProfile();
         }
         if ( id==R.id.action_apply)
         {
-apply();
+            apply();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -3,9 +3,7 @@ package com.greatnorthcap.compass;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,7 +89,7 @@ public class AccountProfileActivity extends AppCompatActivity {
     }
     protected void ParseJSON(String response)
     {
-        JSONObject JSONobj = null;
+        JSONObject JSONobj;
         try {
             JSONobj = new JSONObject(response);
             JSONArray JSONAr=  JSONobj.getJSONArray(UserPref.getJsonArray());
@@ -116,5 +114,4 @@ public class AccountProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
