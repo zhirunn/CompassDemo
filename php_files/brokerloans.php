@@ -22,6 +22,8 @@
                     )
                  );
 }
+
+
         ob_clean();
         echo json_encode(array("Result"=>$result));
         mysqli_close($conn);

@@ -40,12 +40,6 @@
         android:text="Job Title: " />
 
     <Button
-        android:id="@+id/buttonBorrow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Borrow" />
-
-    <Button
         android:id="@+id/buttonLend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

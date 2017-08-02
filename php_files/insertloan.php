@@ -14,6 +14,18 @@ INSERT INTO LoanCredentials (BankStatement,FirstPayStub,SecondPayStub,ThirdPaySt
    			echo "Could create a new loan";
    		}
 
+
+         $sql = "SELECT LoanID FROM LoanCredentials ";
+         $id = 0;
+         $res = mysqli($conn,$sql);
+         		while($row = mysqli_fetch_array($res)) {
+         			$id = $row['id'];
+         		}
+         	$path = "Images/$id/";
+         	$actualpath = "https://greatnorthcap.000webhostapp.com/$path";
+            mkdir("../$path");
+
+
         mysqli_close($conn);
         }
 ?>

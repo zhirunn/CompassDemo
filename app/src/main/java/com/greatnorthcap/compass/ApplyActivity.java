@@ -190,6 +190,7 @@ public class ApplyActivity extends AppCompatActivity {
                     public void onResponse(String response)
                     {
                         Toast.makeText(ApplyActivity.this, response, Toast.LENGTH_SHORT).show();
+                        getRequest();
                     }
 
                 }, new Response.ErrorListener() {
@@ -208,7 +209,26 @@ public class ApplyActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringGetRequest);
     }
+protected void getRequest()
+{
+    StringRequest stringGetRequest = new StringRequest(Request.Method.GET, UserPref.getNewfolderUrl(),
+            new Response.Listener<String>(){
+                @Override
+                public void onResponse(String response)
+                {
 
+                }
+
+            }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error)
+        {
+            Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+
+        }
+    });
+    requestQueue.add(stringGetRequest);
+}
 
     protected void ParseJSON(String response)
     {
