@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by aspiree15 on 02/08/17.
@@ -18,6 +24,7 @@ public class UploadLoanImagesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+        String loanid = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadloanimages);
         imageBNinetyDayBankStatement = findViewById(R.id.ninetyDayBankStatementImageButton);
@@ -31,6 +38,18 @@ public class UploadLoanImagesActivity extends Activity {
         imageBSIN = findViewById(R.id.socialInsuranceNumberImageButton);
         imageBAnotherID = findViewById(R.id.anotherIDImageButton);
         imageBPreAuthorizedAgreement = findViewById(R.id.preauthorizedAgreementImageButton);
+
+        String NinetyDayBankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
+
+        try {
+            //URL url = new URL("http://image10.bizrate-images.com/resize?sq=60&uid=2216744464");
+            URL url = new URL(NinetyDayBankStatementURL);
+            //Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            //Bitmap bmp = BitmapFactory.decodeStream(url.openStream());
+            //imageBNinetyDayBankStatement.setImageBitmap(bmp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         imageBNinetyDayBankStatement.setOnClickListener(new View.OnClickListener() {
             @Override
