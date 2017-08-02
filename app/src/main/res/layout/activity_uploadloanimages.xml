@@ -109,7 +109,7 @@
                 app:srcCompat="@drawable/upload_icon" />
 
             <TextView
-                android:id="@+id/pre-authorizedDebitTextView"
+                android:id="@+id/preauthorizedDebitTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pre-Authorized Debit Form (Required)"
@@ -117,10 +117,10 @@
                 android:textSize="24sp" />
 
             <ImageButton
-                android:contentDescription="Pre-Authorized Debit ImageButton"
-                android:id="@+id/pre-authorizedDebitImageButton"
+                android:id="@+id/preauthorizedDebitImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:contentDescription="Pre-Authorized Debit ImageButton"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
