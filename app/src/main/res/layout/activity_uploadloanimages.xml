@@ -36,7 +36,7 @@
             <ImageButton
                 android:contentDescription="First Recent Pay Stub ImageButton"
                 android:id="@+id/firstRecentPayStubImageButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
@@ -44,7 +44,7 @@
             <ImageButton
                 android:contentDescription="Second Recent Pay Stub ImageButton"
                 android:id="@+id/secondRecentPayStubImageButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
@@ -114,14 +114,10 @@
                 android:textSize="24sp" />
 
             <ImageButton
-<<<<<<< HEAD
-                android:contentDescription="PreAuthorized Debit ImageButton"
-=======
->>>>>>> dbbf2ddf8f15979129e96986440e3fd43906cb11
+                android:contentDescription="Preauthorized Debit ImageButton"
                 android:id="@+id/preauthorizedDebitImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:contentDescription="Pre-Authorized Debit ImageButton"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
