@@ -13,7 +13,7 @@
 			echo "Successfully Uploaded";
 		} else {
 			ob_clean();
-			echo "Image could not be uploaded. Fix the path.";
+			echo "Image could not be uploaded.";
 		}
 		mysqli_close($conn);
 	}
