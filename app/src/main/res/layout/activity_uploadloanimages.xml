@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/recentPayStubTextView"
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <ImageButton
                 android:contentDescription="Second Recent Pay Stub ImageButton"
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <ImageButton
                 android:contentDescription="Third Recent Pay Stub ImageButton"
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/govIDTextView"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/employmentLetterTextView"
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/addressProofTextView"
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/preauthorizedDebitTextView"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/socialInsuranceNumberTextView"
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <TextView
                 android:id="@+id/anotherIDTextView"
@@ -151,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon" />
 
             <Button
                 android:id="@+id/applyButton"
