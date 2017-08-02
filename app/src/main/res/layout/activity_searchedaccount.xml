@@ -39,11 +39,36 @@
         android:layout_height="wrap_content"
         android:text="Job Title: " />
 
-    <Button
-        android:id="@+id/buttonLend"
+    <TextView
+        android:id="@+id/textBorrowerType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lend" />
+        android:text="Choose BorrowerType" />
 
+    <Spinner
+        android:id="@+id/spinnerBorrowerType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textLenderType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Lender Type" />
+
+    <Spinner
+        android:id="@+id/spinnerLenderType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:id="@+id/buttonUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update account type" />
 
 </LinearLayout>

@@ -44,6 +44,7 @@ public class UserSharedPref {
     private static final String JOB_Title = "JobTitle";
     private static final String SEARCHEDLOANID_SHARED_PREF = "LoanID";
 
+
     public UserSharedPref() {
     }
 
@@ -114,5 +115,6 @@ public class UserSharedPref {
     }
     public String getUserSearchURL() {return USERSEARCH_URL;}
     public String getSearchedloanidSharedPref() {return SEARCHEDLOANID_SHARED_PREF;}
+
 
 }

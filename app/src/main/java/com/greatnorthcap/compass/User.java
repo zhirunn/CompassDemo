@@ -36,8 +36,44 @@ public class User extends ArrayAdapter<String> {
         TextView textViewLender = listViewItem.findViewById(R.id.textViewLenderType);
         textViewuserId.setText("User ID: " + userIds[position]);
         textViewEmail.setText("User Email: " + userEmails[position]);
-        textViewBorrower.setText("Borrower Status: " + borrowerTypes[position]);
-        textViewLender.setText("Lender Status: " + lenderTypes[position]);
+        String Unscreened = "0";
+        String LowRisk = "1";
+        String HighRisk = "2";
+        if ( borrowerTypes[position].equalsIgnoreCase(Unscreened))
+        {
+            textViewBorrower.setText("Borrower Status: Unscreened ");
+
+        }
+        else if (borrowerTypes[position].equalsIgnoreCase(LowRisk))
+        {
+            textViewBorrower.setText("Borrower Status: Low Risk ");
+
+        }
+        else if (borrowerTypes[position].equalsIgnoreCase(HighRisk))
+        {
+            textViewBorrower.setText("Borrower Status: High Risk ");
+
+        }
+        else
+        {
+            textViewBorrower.setText("Borrower Status: Admin");
+        }
+        if (lenderTypes[position].equalsIgnoreCase(Unscreened))
+        {
+            textViewLender.setText("Lender Status: Unscreened ");
+        }
+        else if (lenderTypes[position].equalsIgnoreCase(LowRisk))
+        {
+            textViewLender.setText("Lender Status: Low Risk");
+        }
+        else if (lenderTypes[position].equalsIgnoreCase(HighRisk))
+        {
+            textViewLender.setText("Lender Status: High Risk ");
+        }
+        else
+        {
+            textViewLender.setText("Lender Status: Admin");
+        }
         return listViewItem;
     }
 }

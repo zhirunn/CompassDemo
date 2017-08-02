@@ -5,16 +5,32 @@
     android:weightSum="1">
 
     <Button
+        android:id="@+id/buttonAdminUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12"
+        android:text="Search User [Admin]" />
+
+    <Button
+        android:id="@+id/buttonAdminLoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12"
+        android:text="Search Loans [Admin]"
+        android:visibility="visible" />
+
+    <Button
         android:id="@+id/buttonUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.12"
-        android:text="Search User" />
+        android:text="Search Users" />
 
     <Button
         android:id="@+id/buttonLoan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.12"
-        android:text="Search Loans" />
+        android:text="Search Loans"
+        android:visibility="visible" />
 </LinearLayout>
