@@ -61,19 +61,16 @@ public class BrokerLoanActivity extends AppCompatActivity {
                 prefEditor.putString(UserPref.getSearchedloanidSharedPref(), SearchedID);
                 prefEditor.commit();
                 startActivity(new Intent(BrokerLoanActivity.this, SelectedBrokerLoanActivity.class));
-
-
             }
         });
     }
-
 
     protected void SendRequest()
     {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final String  ID = sharedPreferences.getString(UserPref.getKeyUserId(),"Null");
         StringRequest stringGetRequest = new StringRequest(Request.Method.POST, UserPref.getBrokerloansUrl(),
-                new Response.Listener<String>(){
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response)
                     {
@@ -130,7 +127,7 @@ public class BrokerLoanActivity extends AppCompatActivity {
                 LenderID[i] = JO.getString("LenderID");
                 DateLastModified[i] = JO.getString("DateLastModified");
             }
-            Loan ShowLoans = new Loan(this,LoanIds,AmountsApproved,APR,TermDate,PaymentDue,Principal,Interest,Status,BorrowerID,LenderID,DateLastModified);
+            Loan ShowLoans = new Loan(this, LoanIds, AmountsApproved, APR, TermDate, PaymentDue, Principal, Interest, Status, BorrowerID, LenderID, DateLastModified);
             listViewBrokerLoans.setAdapter(ShowLoans);
         }
         catch (JSONException e)

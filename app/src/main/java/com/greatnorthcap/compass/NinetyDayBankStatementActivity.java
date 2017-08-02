@@ -32,6 +32,7 @@ import java.util.Map;
 public class NinetyDayBankStatementActivity extends AppCompatActivity {
 
     private UserSharedPref UserPref = new UserSharedPref();
+    private String LoanID = UserPref.getSearchedloanidSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     private Bitmap bitmap;
