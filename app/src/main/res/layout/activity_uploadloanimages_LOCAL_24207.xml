@@ -114,14 +114,10 @@
                 android:textSize="24sp" />
 
             <ImageButton
-<<<<<<< HEAD
                 android:contentDescription="PreAuthorized Debit ImageButton"
-=======
->>>>>>> dbbf2ddf8f15979129e96986440e3fd43906cb11
                 android:id="@+id/preauthorizedDebitImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:contentDescription="Pre-Authorized Debit ImageButton"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 

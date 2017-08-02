@@ -43,6 +43,7 @@ public class ApplyActivity extends AppCompatActivity {
     private EditText editTextEmployment;
     private EditText editTextJobTitle;
     private UserSharedPref UserPref = new UserSharedPref();
+    private String LenderType;
     String Fullname = "null";
     String PhoneNumber = "null";
     String Address = "null";
@@ -72,6 +73,8 @@ public class ApplyActivity extends AppCompatActivity {
                 Employment = editTextEmployment.getText().toString().trim();
                 JobTitle = editTextJobTitle.getText().toString().trim();
                 updateInformation();
+
+
             }
         });
         createLoanButton.setOnClickListener(new View.OnClickListener()
@@ -156,7 +159,44 @@ public class ApplyActivity extends AppCompatActivity {
         requestQueue.add(stringGetRequest);
 
     }
+    protected void CheckAdmin()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        final String  ID = sharedPreferences.getString(UserPref.getKeyUserId(),"Null");
+        StringRequest stringGetRequest = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/admincheck.php",
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        LenderType = response;
 
+                        String Unscreened = "0";
+                        if (LenderType.equalsIgnoreCase(Unscreened))
+                        {
+                            Toast.makeText(ApplyActivity.this,"You have an unscreened account. You cannot do this.",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            insertLoan();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+
+            }
+        }){            @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put(UserPref.getKeyUserId(), ID);
+            return params;
+        }} ;
+
+        requestQueue.add(stringGetRequest);
+    }
     protected void loanDialog()
     {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -165,7 +205,8 @@ public class ApplyActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                    insertLoan();
+                        CheckAdmin();
+
                     }
                 });
 
@@ -206,7 +247,7 @@ public class ApplyActivity extends AppCompatActivity {
             params.put(UserPref.getKeyUserId(),ID);
             return params;
         }};
-        requestQueue = Volley.newRequestQueue(this);
+
         requestQueue.add(stringGetRequest);
     }
 protected void getRequest()

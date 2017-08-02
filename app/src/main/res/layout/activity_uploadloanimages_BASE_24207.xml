@@ -38,6 +38,7 @@
                 android:id="@+id/firstRecentPayStubImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
+                android:layout_weight="1"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
@@ -46,6 +47,7 @@
                 android:id="@+id/secondRecentPayStubImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
+                android:layout_weight="1"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
@@ -54,6 +56,7 @@
                 android:id="@+id/thirdRecentPayStubImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_weight="1"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
@@ -106,22 +109,18 @@
                 app:srcCompat="@drawable/upload_icon" />
 
             <TextView
-                android:id="@+id/preauthorizedDebitTextView"
+                android:id="@+id/pre-authorizedDebitTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PreAuthorized Debit Form (Required)"
+                android:text="Pre-Authorized Debit Form (Required)"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
             <ImageButton
-<<<<<<< HEAD
-                android:contentDescription="PreAuthorized Debit ImageButton"
-=======
->>>>>>> dbbf2ddf8f15979129e96986440e3fd43906cb11
-                android:id="@+id/preauthorizedDebitImageButton"
+                android:contentDescription="Pre-Authorized Debit ImageButton"
+                android:id="@+id/pre-authorizedDebitImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:contentDescription="Pre-Authorized Debit ImageButton"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/upload_icon" />
 
@@ -134,7 +133,7 @@
                 android:textSize="24sp" />
 
             <ImageButton
-                android:contentDescription="Social Insurance Number ImageButton"
+                android:contentDescription="Pre-Authorized Debit ImageButton"
                 android:id="@+id/socialInsuranceNumberImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
