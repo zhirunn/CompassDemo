@@ -1,9 +1,12 @@
 package com.greatnorthcap.compass;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,6 +52,19 @@ public class BrokerLoanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_brokerloan);
         listViewBrokerLoans = (ListView) findViewById(R.id.brokerloanlistView);
         SendRequest();
+        listViewBrokerLoans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String SearchedID = LoanIds[position];
+                SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                prefEditor.putString(UserPref.getSearchedloanidSharedPref(), SearchedID);
+                prefEditor.commit();
+                startActivity(new Intent(BrokerLoanActivity.this, SelectedBrokerLoanActivity.class));
+
+
+            }
+        });
     }
 
 

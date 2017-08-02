@@ -42,9 +42,11 @@ public class UserSharedPref {
     private static final String ADDRESS = "Address";
     private static final String EMPLOYMENT = "Employment";
     private static final String JOB_Title = "JobTitle";
+    private static final String SEARCHEDLOANID_SHARED_PREF = "LoanID";
 
     public UserSharedPref() {
     }
+
     public String getNewfolderUrl() {return NEWFOLDER_URL;}
     public String getBrokerloansUrl() {return BROKERLOANS_URL;}
     public String getInsertbrokerloanUrl(){return INSERTBROKERLOAN_URL;}
@@ -111,5 +113,6 @@ public class UserSharedPref {
         return JSON_ARRAY;
     }
     public String getUserSearchURL() {return USERSEARCH_URL;}
+    public String getSearchedloanidSharedPref() {return SEARCHEDLOANID_SHARED_PREF;}
 
 }
