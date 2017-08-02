@@ -1,6 +1,8 @@
 package com.greatnorthcap.compass;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,14 +31,15 @@ import java.util.Map;
  * Created by aspiree15 on 11/07/17.
  */
 
-public class NinetyDayBankStatementActivity extends AppCompatActivity {
+public class UploadImageActivity extends AppCompatActivity {
 
     private UserSharedPref UserPref = new UserSharedPref();
-    private String LoanID = UserPref.getSearchedloanidSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
     private static final int RESULT_BANK_STATEMENT_IMAGE_CAMERA = 2;
     private Bitmap bitmap;
     private String KEY_IMAGE = "Image";
+    private String KEY_TYPE = "Type";
+    private String KEY_LOANID = "LoanID";
     ImageView imageViewBankStatement;
     Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
 
@@ -86,27 +89,35 @@ public class NinetyDayBankStatementActivity extends AppCompatActivity {
     }
 
     private void uploadBankStatement() {
+        //final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getImageuploadUrl(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(NinetyDayBankStatementActivity.this, response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(UploadImageActivity.this, response, Toast.LENGTH_LONG).show();
                         //an Intent should be used to change pages after the user successfully uploaded their image.
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(NinetyDayBankStatementActivity.this, "Please Select An Image.", Toast.LENGTH_LONG).show();
-                        //Toast.makeText(NinetyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(UploadImageActivity.this, "Please Select An Image.", Toast.LENGTH_LONG).show();
+                        //String type = sharedPreferences.getString(UserPref.getUploadtypeSharedPref(), "Not Available");
+                        //Toast.makeText(UploadImageActivity.this, type, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(UploadImageActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
                 String image = getStringImage(bitmap);
-                //Toast.makeText(NinetyDayBankStatementActivity.this, image.toString(), Toast.LENGTH_LONG).show();
+                String type = sharedPreferences.getString(UserPref.getUploadtypeSharedPref(), "Not Available");
+                String loanid = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
+                //Toast.makeText(UploadImageActivity.this, image.toString(), Toast.LENGTH_LONG).show();
                 Map<String,String> params = new Hashtable<>();
                 params.put(KEY_IMAGE, image);
+                params.put(KEY_TYPE, type);
+                params.put(KEY_LOANID, loanid);
                 return params;
             }
         };
@@ -121,7 +132,7 @@ public class NinetyDayBankStatementActivity extends AppCompatActivity {
             try {
                 Uri selectedImage = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                //Toast.makeText(NinetyDayBankStatementActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(UploadImageActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
                 imageViewBankStatement.setImageBitmap(bitmap);
             } catch(IOException ex) {
                 throw new RuntimeException("The selected image size might be too large", ex);
