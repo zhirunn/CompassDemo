@@ -28,23 +28,23 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/bankstatementtext"
+                android:id="@+id/uploadimagetext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:text="90 Day Bank Statement" />
+                android:text="" />
 
             <ImageView
-                android:contentDescription="@string/thebankstatementimage"
-                android:id="@+id/bankstatementimage"
+                android:contentDescription="@string/theimagetoupload"
+                android:id="@+id/uploadimageimageview"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="240dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp" />
 
             <Button
-                android:id="@+id/bankstatementgallerybutton"
+                android:id="@+id/uploadimagegallerybutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Image"
@@ -53,7 +53,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <Button
-                android:id="@+id/bankstatementcamerabutton"
+                android:id="@+id/uploadimagecamerabutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Take Picture"
@@ -61,7 +61,7 @@
                 android:layout_marginEnd="60dp" />
 
             <Button
-                android:id="@+id/uploadbankstatementbutton"
+                android:id="@+id/uploadimageuploadbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upload"

@@ -12,6 +12,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,19 +41,26 @@ public class UploadImageActivity extends AppCompatActivity {
     private String KEY_IMAGE = "Image";
     private String KEY_TYPE = "Type";
     private String KEY_LOANID = "LoanID";
-    ImageView imageViewBankStatement;
-    Button buttonBankStatementGallery, buttonBankStatementCamera, buttonUploadBankStatement;
+    TextView textViewUploadImage;
+    ImageView imageViewUploadImage;
+    Button buttonUploadImageGallery, buttonUploadImageCamera, buttonUploadImageUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nintydaybankstatement);
-        imageViewBankStatement = (ImageView) findViewById(R.id.bankstatementimage);
-        buttonBankStatementGallery = (Button) findViewById(R.id.bankstatementgallerybutton);
-        buttonBankStatementCamera = (Button) findViewById(R.id.bankstatementcamerabutton);
-        buttonUploadBankStatement = (Button) findViewById(R.id.uploadbankstatementbutton);
+        setContentView(R.layout.activity_uploadimage);
 
-        buttonBankStatementGallery.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        String type = sharedPreferences.getString(UserPref.getUploadtypeSharedPref(), "Not Available");
+        textViewUploadImage = (TextView) findViewById(R.id.uploadimagetext);
+        textViewUploadImage.setText(type);
+
+        imageViewUploadImage = (ImageView) findViewById(R.id.uploadimageimageview);
+        buttonUploadImageGallery = (Button) findViewById(R.id.uploadimagegallerybutton);
+        buttonUploadImageCamera = (Button) findViewById(R.id.uploadimagecamerabutton);
+        buttonUploadImageUpload = (Button) findViewById(R.id.uploadimageuploadbutton);
+
+        buttonUploadImageGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent bank_statement_gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -61,7 +69,7 @@ public class UploadImageActivity extends AppCompatActivity {
             }
         });
 
-        buttonBankStatementCamera.setOnClickListener(new View.OnClickListener() {
+        buttonUploadImageCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent bank_statement_camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -69,7 +77,7 @@ public class UploadImageActivity extends AppCompatActivity {
             }
         });
 
-        buttonUploadBankStatement.setOnClickListener(new View.OnClickListener() {
+        buttonUploadImageUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadBankStatement();
@@ -95,6 +103,7 @@ public class UploadImageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(UploadImageActivity.this, response, Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(UploadImageActivity.this, UploadLoanImagesActivity.class));
                         //an Intent should be used to change pages after the user successfully uploaded their image.
                     }
                 },
@@ -133,14 +142,14 @@ public class UploadImageActivity extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                 //Toast.makeText(UploadImageActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
-                imageViewBankStatement.setImageBitmap(bitmap);
+                imageViewUploadImage.setImageBitmap(bitmap);
             } catch(IOException ex) {
                 throw new RuntimeException("The selected image size might be too large", ex);
             }
         }
         if(requestCode == RESULT_BANK_STATEMENT_IMAGE_CAMERA && resultCode == RESULT_OK && data!=null) {
             bitmap = (Bitmap)data.getExtras().get("data");
-            imageViewBankStatement.setImageBitmap(bitmap);
+            imageViewUploadImage.setImageBitmap(bitmap);
         }
     }
 

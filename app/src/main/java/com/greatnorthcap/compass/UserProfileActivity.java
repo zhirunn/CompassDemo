@@ -54,6 +54,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         prefEditor.putString(UserPref.getEmailSharedPref(), "");
                         prefEditor.putString(UserPref.getUseridSharedPref(), "");
                         prefEditor.putString(UserPref.getSearchedloanidSharedPref(), "");
+                        prefEditor.putString(UserPref.getUploadtypeSharedPref(), "");
                         prefEditor.commit();
                         Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
                         intent.setFlags(FLAG_ACTIVITY_NO_HISTORY);
