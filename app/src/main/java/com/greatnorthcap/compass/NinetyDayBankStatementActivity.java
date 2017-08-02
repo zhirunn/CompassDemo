@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by aspiree15 on 11/07/17.
  */
 
-public class NintyDayBankStatementActivity extends AppCompatActivity {
+public class NinetyDayBankStatementActivity extends AppCompatActivity {
 
     private UserSharedPref UserPref = new UserSharedPref();
     private static final int RESULT_BANK_STATEMENT_IMAGE_GALLERY = 1;
@@ -89,21 +89,21 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(NinetyDayBankStatementActivity.this, response, Toast.LENGTH_LONG).show();
                         //an Intent should be used to change pages after the user successfully uploaded their image.
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(NintyDayBankStatementActivity.this, "Please Select An Image.", Toast.LENGTH_LONG).show();
-                        //Toast.makeText(NintyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(NinetyDayBankStatementActivity.this, "Please Select An Image.", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(NinetyDayBankStatementActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 String image = getStringImage(bitmap);
-                //Toast.makeText(NintyDayBankStatementActivity.this, image.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(NinetyDayBankStatementActivity.this, image.toString(), Toast.LENGTH_LONG).show();
                 Map<String,String> params = new Hashtable<>();
                 params.put(KEY_IMAGE, image);
                 return params;
@@ -120,7 +120,7 @@ public class NintyDayBankStatementActivity extends AppCompatActivity {
             try {
                 Uri selectedImage = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                //Toast.makeText(NintyDayBankStatementActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(NinetyDayBankStatementActivity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
                 imageViewBankStatement.setImageBitmap(bitmap);
             } catch(IOException ex) {
                 throw new RuntimeException("The selected image size might be too large", ex);
