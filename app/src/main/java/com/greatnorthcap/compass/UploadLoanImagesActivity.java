@@ -4,15 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by aspiree15 on 02/08/17.
@@ -39,15 +36,32 @@ public class UploadLoanImagesActivity extends Activity {
         imageBAnotherID = findViewById(R.id.anotherIDImageButton);
         imageBPreAuthorizedAgreement = findViewById(R.id.preauthorizedAgreementImageButton);
 
-        String NinetyDayBankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
+        String BankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
+        String FirstPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/FirstPayStub.jpg";
+        String SecondPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/SecondPayStub.jpg";
+        String ThirdPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/ThirdPayStub.jpg";
+        String DriversIDURL = UserPref.getServerAddress() + "Images/" + loanid + "/DriversID.jpg";
+        String EmploymentLetterURL = UserPref.getServerAddress() + "Images/" + loanid + "/EmploymentLetter.jpg";
+        String ProofOfAddressURL= UserPref.getServerAddress() + "Images/" + loanid + "/ProofOfAddress.jpg";
+        String PreAuthorizedDebitURL= UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedDebit.jpg";
+        String SocialInsuranceNumberURL= UserPref.getServerAddress() + "Images/" + loanid + "/SocialInsuranceNumber.jpg";
+        String OtherIDURL= UserPref.getServerAddress() + "Images/" + loanid + "/OtherID.jpg";
+        String PreAuthorizedAgreementURL= UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedAgreement.jpg";
+
 
         try {
-            //URL url = new URL("http://image10.bizrate-images.com/resize?sq=60&uid=2216744464");
-            URL url = new URL(NinetyDayBankStatementURL);
-            //Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            //Bitmap bmp = BitmapFactory.decodeStream(url.openStream());
-            //imageBNinetyDayBankStatement.setImageBitmap(bmp);
-        } catch (IOException e) {
+            Picasso.with(this).load(BankStatementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBNinetyDayBankStatement);
+            Picasso.with(this).load(FirstPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBFirstPayStub);
+            Picasso.with(this).load(SecondPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBSecondPayStub);
+            Picasso.with(this).load(ThirdPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBThirdPayStub);
+            Picasso.with(this).load(DriversIDURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBGovID);
+            Picasso.with(this).load(EmploymentLetterURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBEmploymentLetter);
+            Picasso.with(this).load(ProofOfAddressURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBAddressProof);
+            Picasso.with(this).load(PreAuthorizedDebitURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBPreAuthorizedDebit);
+            Picasso.with(this).load(SocialInsuranceNumberURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBSIN);
+            Picasso.with(this).load(OtherIDURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBAnotherID);
+            Picasso.with(this).load(PreAuthorizedAgreementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBPreAuthorizedAgreement);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
