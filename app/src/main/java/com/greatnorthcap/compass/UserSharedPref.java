@@ -33,6 +33,8 @@ public class UserSharedPref {
     private static final String LOGGEDIN_SHARED_PREF = "LoggedIn";
     private static final String SEARCHEDID_SHARED_PREF = "SearchedID";
     private static final String UPLOADTYPE_SHARED_PREF = "UploadType";
+    private static final String LENDERTYPE_SHARED_PREF = "LenderType";
+    private static final String BORROWERID_SHARED_PREF = "BorrowerID";
     private static final String JSON_ARRAY = "Result";
     private static final String borrowerType = "BorrowerType";
     private static final String lenderType = "LenderType";
@@ -48,7 +50,8 @@ public class UserSharedPref {
 
     public UserSharedPref() {
     }
-
+    public String getBorroweridSharedPref() {return BORROWERID_SHARED_PREF;}
+    public String getLendertypeSharedPref(){return LENDERTYPE_SHARED_PREF;}
     public String getNewfolderUrl() {return NEWFOLDER_URL;}
     public String getBrokerloansUrl() {return BROKERLOANS_URL;}
     public String getInsertbrokerloanUrl(){return INSERTBROKERLOAN_URL;}

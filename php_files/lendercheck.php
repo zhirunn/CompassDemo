@@ -10,5 +10,4 @@ ob_clean();
 echo $admincheck;
 mysqli_close($conn);
 }
-
 ?>

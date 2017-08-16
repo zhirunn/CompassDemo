@@ -47,13 +47,19 @@ public class SearchActivity extends AppCompatActivity {
         buttonAdminLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SearchActivity.this, LoanSearchActivity.class));
-            }
+
+        }
         });
         buttonAdminUser.setVisibility(View.GONE);
         buttonAdminLoan.setVisibility(View.GONE);
         buttonUser.setVisibility(View.GONE);
         buttonLoan.setVisibility(View.GONE);
+        buttonLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchActivity.this, LoanSearchActivity.class));
+            }
+        });
         SendRequest();
 
     }
@@ -72,14 +78,19 @@ public class SearchActivity extends AppCompatActivity {
                         String Unscreened = "0";
                         if(LenderType.equalsIgnoreCase(AdminString))
                         {
-                            buttonAdminLoan.setVisibility(View.VISIBLE);
+
                             buttonAdminUser.setVisibility(View.VISIBLE);
                         }
                         if (!LenderType.equalsIgnoreCase(Unscreened))
                         {
                             buttonLoan.setVisibility(View.VISIBLE);
-                            buttonUser.setVisibility(View.VISIBLE);
+
                         }
+                        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+
+                        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                        prefEditor.putString(UserPref.getLendertypeSharedPref(), LenderType);
+                        prefEditor.commit();
 
                     }
 

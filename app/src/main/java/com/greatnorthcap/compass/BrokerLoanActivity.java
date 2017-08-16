@@ -56,9 +56,11 @@ public class BrokerLoanActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String SearchedID = LoanIds[position];
+                String SearchedBorrower = BorrowerID[position];
                 SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
                 SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                 prefEditor.putString(UserPref.getSearchedloanidSharedPref(), SearchedID);
+                prefEditor.putString(UserPref.getBorroweridSharedPref(),SearchedBorrower);
                 prefEditor.commit();
                 startActivity(new Intent(BrokerLoanActivity.this, SelectedBrokerLoanActivity.class));
             }

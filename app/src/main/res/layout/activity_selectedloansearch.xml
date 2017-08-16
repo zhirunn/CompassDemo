@@ -10,15 +10,20 @@
         android:text="Loan ID: " />
 
     <TextView
-        android:id="@+id/tvBorrower"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Borrower Type:" />
+        android:text="TextView" />
 
     <Button
-        android:id="@+id/buttonDocuments"
+        android:id="@+id/btnDocuments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View uploaded documents" />
+        android:text="View Documents" />
 
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Loan Status" />
 </LinearLayout>

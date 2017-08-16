@@ -163,7 +163,7 @@ public class ApplyActivity extends AppCompatActivity {
     {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final String  ID = sharedPreferences.getString(UserPref.getKeyUserId(),"Null");
-        StringRequest stringGetRequest = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/admincheck.php",
+        StringRequest stringGetRequest = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/usercheck.php",
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response)

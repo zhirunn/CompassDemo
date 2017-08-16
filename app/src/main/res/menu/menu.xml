@@ -18,4 +18,10 @@
     android:title="profileinformation"
     app:showAsAction="always"
     />
+    <item
+        android:id="@+id/action_loanstatus"
+        android:icon="@drawable/loanstatus_icon"
+        android:title="loanstatus"
+        app:showAsAction="always"
+        />
 </menu>

@@ -1,8 +1,18 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=='POST') {
-		$id = $_POST['LoanID'];
+		$lender = $_POST['LenderType'];
+		$sql ="";
 		require_once "connect.php";
-		$sql = "SELECT * FROM Loans WHERE BorrowerID = '$id'";
+		if($lender == '3')
+		{
+		$sql = "SELECT * FROM Loans";
+		}
+		else
+		{
+		$sql = "SELECT * FROM Loans INNER JOIN Users ON
+                Loans.BorrowerID = Users.UserID
+                WHERE BorrowerType = '$lender'";
+		}
 		$res = mysqli_query($conn, $sql);
         $result = array();
 
@@ -22,8 +32,6 @@
                     )
                  );
 }
-
-
         ob_clean();
         echo json_encode(array("Result"=>$result));
         mysqli_close($conn);

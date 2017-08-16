@@ -18,18 +18,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Dan on 8/1/2017.
+ * Created by Dan on 8/14/2017.
  */
 
-public class SelectedBrokerLoanActivity extends AppCompatActivity {
+public class SelectedLoanActivity extends AppCompatActivity {
     private TextView LoanIDTextView;
     private UserSharedPref UserPref = new UserSharedPref();
     private String ID;
@@ -51,10 +47,9 @@ public class SelectedBrokerLoanActivity extends AppCompatActivity {
         buttonDocuments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectedBrokerLoanActivity.this, UploadLoanImagesActivity.class));
+                startActivity(new Intent(SelectedLoanActivity.this, UploadLoanImagesActivity.class));
             }
         });
-
     }
     protected void SendRequest()
     {
@@ -79,14 +74,13 @@ public class SelectedBrokerLoanActivity extends AppCompatActivity {
                         {
                             tvBorrower.setText("Borrower Type: High Risk Borrower");
                         }
-
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedBrokerLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         }){            @Override
@@ -100,4 +94,3 @@ public class SelectedBrokerLoanActivity extends AppCompatActivity {
 
     }
 }
-
