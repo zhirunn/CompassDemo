@@ -64,6 +64,9 @@
         <activity android:name=".UploadLoanImagesActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".SelectedLoanActivity"
+            android:label="@string/app_name">
+        </activity>
 
     </application>
     
