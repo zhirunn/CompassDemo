@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.greatnorthcap.compass.MainActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
@@ -43,6 +44,7 @@
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:text="Log In"
+        android:background="@color/colorButtonPositive"
         app:layout_constraintRight_toLeftOf="@+id/register"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
@@ -55,6 +57,7 @@
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:text="Register"
+        android:background="@color/colorButtonNegative"
         tools:layout_constraintRight_creator="1"
         android:layout_marginEnd="51dp"
         app:layout_constraintRight_toRightOf="parent"

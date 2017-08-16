@@ -4,7 +4,7 @@
 	
 	if(!$conn) {
 		echo "We are unable to connect to the database. Please try again later";
-	}else {
+	} else {
 		echo "You have successfully connected to the database.";
 	}
 ?>
