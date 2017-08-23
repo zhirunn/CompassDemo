@@ -81,8 +81,7 @@ public class AccountProfileActivity extends AppCompatActivity {
             Map<String, String> params = new HashMap<>();
             params.put(UserPref.getKeyUserId(), ID);
             return params;
-        }}
-                ;
+        }};
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringGetRequest);
 
