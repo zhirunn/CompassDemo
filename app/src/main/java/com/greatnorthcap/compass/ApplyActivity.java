@@ -79,9 +79,9 @@ public class ApplyActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                if(editTextFullName.getText().toString().equals("") || editTextAddress.getText().toString().equals("")
-                        || editTextPhoneNumber.getText().toString().equals("") || editTextEmployment.getText().toString().equals("")
-                        || editTextJobTitle.getText().toString().equals("")) {
+                if(editTextFullName.getText().toString().trim().equals("") || editTextAddress.getText().toString().trim().equals("")
+                        || editTextPhoneNumber.getText().toString().trim().equals("") || editTextEmployment.getText().toString().trim().equals("")
+                        || editTextJobTitle.getText().toString().trim().equals("")) {
                     Toast.makeText(ApplyActivity.this, "Please fill in all the required fields.", Toast.LENGTH_LONG).show();
                 } else {
                     loanDialog();
@@ -92,9 +92,9 @@ public class ApplyActivity extends AppCompatActivity {
         {
             @Override
             public  void onClick(View v) {
-                if (editTextFullName.getText().toString().equals("") || editTextAddress.getText().toString().equals("")
-                        || editTextPhoneNumber.getText().toString().equals("") || editTextEmployment.getText().toString().equals("")
-                        || editTextJobTitle.getText().toString().equals("")) {
+                if (editTextFullName.getText().toString().trim().equals("") || editTextAddress.getText().toString().trim().equals("")
+                        || editTextPhoneNumber.getText().toString().trim().equals("") || editTextEmployment.getText().toString().trim().equals("")
+                        || editTextJobTitle.getText().toString().trim().equals("")) {
                     Toast.makeText(ApplyActivity.this, "Please fill in all the required fields.", Toast.LENGTH_LONG).show();
                 } else {
                     startActivity(new Intent(ApplyActivity.this, BrokerLoanActivity.class));
