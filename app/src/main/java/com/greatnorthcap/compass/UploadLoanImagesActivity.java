@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.squareup.picasso.NetworkPolicy;
@@ -18,6 +19,7 @@ import com.squareup.picasso.Picasso;
 public class UploadLoanImagesActivity extends Activity {
     private UserSharedPref UserPref = new UserSharedPref();
     ImageButton imageBNinetyDayBankStatement, imageBFirstPayStub, imageBSecondPayStub, imageBThirdPayStub, imageBGovID, imageBEmploymentLetter, imageBAddressProof, imageBPreAuthorizedDebit, imageBSIN, imageBAnotherID, imageBPreAuthorizedAgreement;
+    Button buttonApplyForLoan;
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final SharedPreferences.Editor prefEditor = sharedPreferences.edit();
@@ -35,6 +37,7 @@ public class UploadLoanImagesActivity extends Activity {
         imageBSIN = findViewById(R.id.socialInsuranceNumberImageButton);
         imageBAnotherID = findViewById(R.id.anotherIDImageButton);
         imageBPreAuthorizedAgreement = findViewById(R.id.preauthorizedAgreementImageButton);
+        buttonApplyForLoan = findViewById(R.id.applyButton);
 
         String BankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
         String FirstPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/FirstPayStub.jpg";
@@ -47,7 +50,6 @@ public class UploadLoanImagesActivity extends Activity {
         String SocialInsuranceNumberURL= UserPref.getServerAddress() + "Images/" + loanid + "/SocialInsuranceNumber.jpg";
         String OtherIDURL= UserPref.getServerAddress() + "Images/" + loanid + "/OtherID.jpg";
         String PreAuthorizedAgreementURL= UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedAgreement.jpg";
-
 
         try {
             Picasso.with(this).load(BankStatementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBNinetyDayBankStatement);
@@ -172,6 +174,17 @@ public class UploadLoanImagesActivity extends Activity {
                 prefEditor.putString(UserPref.getUploadtypeSharedPref(), UploadType);
                 prefEditor.commit();
                 startActivity(new Intent(UploadLoanImagesActivity.this, UploadImageActivity.class));
+            }
+        });
+
+        buttonApplyForLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(1==1) {
+                    //check all url links to see if there is an image and abort if there isn't
+                } else {
+                    //send out a loan request
+                }
             }
         });
 
