@@ -8,9 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by aspiree15 on 02/08/17.
@@ -20,6 +25,8 @@ public class UploadLoanImagesActivity extends Activity {
     private UserSharedPref UserPref = new UserSharedPref();
     ImageButton imageBNinetyDayBankStatement, imageBFirstPayStub, imageBSecondPayStub, imageBThirdPayStub, imageBGovID, imageBEmploymentLetter, imageBAddressProof, imageBPreAuthorizedDebit, imageBSIN, imageBAnotherID, imageBPreAuthorizedAgreement;
     Button buttonApplyForLoan;
+    Boolean BankStatementURLCheck, FirstPayStubURLCheck = false;
+
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final SharedPreferences.Editor prefEditor = sharedPreferences.edit();
@@ -66,6 +73,29 @@ public class UploadLoanImagesActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            URL url = new URL(BankStatementURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int code = connection.getResponseCode();
+            if (code == 200) {
+                BankStatementURLCheck = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
+        try {
+            URL url = new URL(FirstPayStubURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            int code = connection.getResponseCode();
+            if (code == 200) {
+                FirstPayStubURLCheck = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
 
         imageBNinetyDayBankStatement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,13 +210,12 @@ public class UploadLoanImagesActivity extends Activity {
         buttonApplyForLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(1==1) {
-                    //check all url links to see if there is an image and abort if there isn't
+                if (!BankStatementURLCheck) {
+                    Toast.makeText(UploadLoanImagesActivity.this, "Please upload all of the required relevant documents.", Toast.LENGTH_LONG).show();
                 } else {
-                    //send out a loan request
+                    Toast.makeText(UploadLoanImagesActivity.this, "It Works.", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 }
