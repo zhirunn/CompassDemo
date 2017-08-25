@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,10 +14,6 @@ import android.widget.Toast;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Created by aspiree15 on 02/08/17.
  */
@@ -24,8 +21,8 @@ import java.net.URL;
 public class UploadLoanImagesActivity extends Activity {
     private UserSharedPref UserPref = new UserSharedPref();
     ImageButton imageBNinetyDayBankStatement, imageBFirstPayStub, imageBSecondPayStub, imageBThirdPayStub, imageBGovID, imageBEmploymentLetter, imageBAddressProof, imageBPreAuthorizedDebit, imageBSIN, imageBAnotherID, imageBPreAuthorizedAgreement;
+    Boolean BankStatementURLCheck, FirstPayStubURLCheck, SecondPayStubURLCheck, ThirdPayStubURLCheck, DriversIDURLCheck, EmploymentLetterURLCheck, ProofOfAddressURLCheck, PreAuthorizedDebitURLCheck, SocialInsuranceNumberURLCheck, OtherIDURLCheck, PreAuthorizedAgreementURLCheck = false;
     Button buttonApplyForLoan;
-    Boolean BankStatementURLCheck, FirstPayStubURLCheck = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
@@ -52,11 +49,11 @@ public class UploadLoanImagesActivity extends Activity {
         String ThirdPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/ThirdPayStub.jpg";
         String DriversIDURL = UserPref.getServerAddress() + "Images/" + loanid + "/DriversID.jpg";
         String EmploymentLetterURL = UserPref.getServerAddress() + "Images/" + loanid + "/EmploymentLetter.jpg";
-        String ProofOfAddressURL= UserPref.getServerAddress() + "Images/" + loanid + "/ProofOfAddress.jpg";
-        String PreAuthorizedDebitURL= UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedDebit.jpg";
-        String SocialInsuranceNumberURL= UserPref.getServerAddress() + "Images/" + loanid + "/SocialInsuranceNumber.jpg";
-        String OtherIDURL= UserPref.getServerAddress() + "Images/" + loanid + "/OtherID.jpg";
-        String PreAuthorizedAgreementURL= UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedAgreement.jpg";
+        String ProofOfAddressURL = UserPref.getServerAddress() + "Images/" + loanid + "/ProofOfAddress.jpg";
+        String PreAuthorizedDebitURL = UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedDebit.jpg";
+        String SocialInsuranceNumberURL = UserPref.getServerAddress() + "Images/" + loanid + "/SocialInsuranceNumber.jpg";
+        String OtherIDURL = UserPref.getServerAddress() + "Images/" + loanid + "/OtherID.jpg";
+        String PreAuthorizedAgreementURL = UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedAgreement.jpg";
 
         try {
             Picasso.with(this).load(BankStatementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBNinetyDayBankStatement);
@@ -74,28 +71,17 @@ public class UploadLoanImagesActivity extends Activity {
             e.printStackTrace();
         }
 
-        try {
-            URL url = new URL(BankStatementURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            int code = connection.getResponseCode();
-            if (code == 200) {
-                BankStatementURLCheck = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        /*
-        try {
-            URL url = new URL(FirstPayStubURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            int code = connection.getResponseCode();
-            if (code == 200) {
-                FirstPayStubURLCheck = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
+        BankStatementURLCheck = Patterns.WEB_URL.matcher(BankStatementURL).matches();
+        FirstPayStubURLCheck = Patterns.WEB_URL.matcher(FirstPayStubURL).matches();
+        SecondPayStubURLCheck = Patterns.WEB_URL.matcher(SecondPayStubURL).matches();
+        ThirdPayStubURLCheck = Patterns.WEB_URL.matcher(ThirdPayStubURL).matches();
+        DriversIDURLCheck = Patterns.WEB_URL.matcher(DriversIDURL).matches();
+        EmploymentLetterURLCheck = Patterns.WEB_URL.matcher(EmploymentLetterURL).matches();
+        ProofOfAddressURLCheck = Patterns.WEB_URL.matcher(ProofOfAddressURL).matches();
+        PreAuthorizedDebitURLCheck = Patterns.WEB_URL.matcher(PreAuthorizedDebitURL).matches();
+        SocialInsuranceNumberURLCheck = Patterns.WEB_URL.matcher(SocialInsuranceNumberURL).matches();
+        OtherIDURLCheck = Patterns.WEB_URL.matcher(OtherIDURL).matches();
+        PreAuthorizedAgreementURLCheck = Patterns.WEB_URL.matcher(PreAuthorizedAgreementURL).matches();
 
         imageBNinetyDayBankStatement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,9 +196,12 @@ public class UploadLoanImagesActivity extends Activity {
         buttonApplyForLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!BankStatementURLCheck) {
+                if (!BankStatementURLCheck || !FirstPayStubURLCheck || !SecondPayStubURLCheck || !ThirdPayStubURLCheck || !DriversIDURLCheck
+                        || !EmploymentLetterURLCheck || !ProofOfAddressURLCheck || !PreAuthorizedDebitURLCheck || !SocialInsuranceNumberURLCheck
+                        || !OtherIDURLCheck || !PreAuthorizedAgreementURLCheck) {
                     Toast.makeText(UploadLoanImagesActivity.this, "Please upload all of the required relevant documents.", Toast.LENGTH_LONG).show();
                 } else {
+                    //This toast needs to be changed.
                     Toast.makeText(UploadLoanImagesActivity.this, "It Works.", Toast.LENGTH_LONG).show();
                 }
             }
