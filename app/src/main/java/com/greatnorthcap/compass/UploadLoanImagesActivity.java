@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,6 +14,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by aspiree15 on 02/08/17.
@@ -71,6 +77,7 @@ public class UploadLoanImagesActivity extends Activity {
             e.printStackTrace();
         }
 
+        /*
         BankStatementURLCheck = Patterns.WEB_URL.matcher(BankStatementURL).matches();
         FirstPayStubURLCheck = Patterns.WEB_URL.matcher(FirstPayStubURL).matches();
         SecondPayStubURLCheck = Patterns.WEB_URL.matcher(SecondPayStubURL).matches();
@@ -82,6 +89,10 @@ public class UploadLoanImagesActivity extends Activity {
         SocialInsuranceNumberURLCheck = Patterns.WEB_URL.matcher(SocialInsuranceNumberURL).matches();
         OtherIDURLCheck = Patterns.WEB_URL.matcher(OtherIDURL).matches();
         PreAuthorizedAgreementURLCheck = Patterns.WEB_URL.matcher(PreAuthorizedAgreementURL).matches();
+        */
+
+        //BankStatementURLCheck = CheckURL(BankStatementURL);
+
 
         imageBNinetyDayBankStatement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,9 +207,10 @@ public class UploadLoanImagesActivity extends Activity {
         buttonApplyForLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!BankStatementURLCheck || !FirstPayStubURLCheck || !SecondPayStubURLCheck || !ThirdPayStubURLCheck || !DriversIDURLCheck
+                if (!BankStatementURLCheck) {
+                /*if (!BankStatementURLCheck || !FirstPayStubURLCheck || !SecondPayStubURLCheck || !ThirdPayStubURLCheck || !DriversIDURLCheck
                         || !EmploymentLetterURLCheck || !ProofOfAddressURLCheck || !PreAuthorizedDebitURLCheck || !SocialInsuranceNumberURLCheck
-                        || !OtherIDURLCheck || !PreAuthorizedAgreementURLCheck) {
+                        || !OtherIDURLCheck || !PreAuthorizedAgreementURLCheck) {*/
                     Toast.makeText(UploadLoanImagesActivity.this, "Please upload all of the required relevant documents.", Toast.LENGTH_LONG).show();
                 } else {
                     //This toast needs to be changed.
@@ -207,4 +219,27 @@ public class UploadLoanImagesActivity extends Activity {
             }
         });
     }
+
+    /*
+    private Boolean CheckURL(String url) {
+        final ScheduledThreadPoolExecutor myTimer = new ScheduledThreadPoolExecutor(1);
+        myTimer.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                Boolean result;
+                try {
+                    HttpURLConnection.setFollowRedirects(false);
+                    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                    conn.setRequestMethod("HEAD");
+                    result = (conn.getResponseCode() == HttpURLConnection.HTTP_OK);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    result = false;
+                }
+            }
+        }, 0,10000, TimeUnit.MILLISECONDS);
+        return result;
+    }
+    */
+
 }
