@@ -33,4 +33,10 @@
         android:layout_weight="0.12"
         android:text="Search Loans"
         android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textViewstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12" />
 </LinearLayout>

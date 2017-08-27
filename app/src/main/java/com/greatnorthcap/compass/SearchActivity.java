@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     private Button buttonAdminUser, buttonAdminLoan,buttonUser,buttonLoan;
     private String LenderType;
     private RequestQueue requestQueue;
+    private TextView tvStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
         buttonAdminLoan = (Button) findViewById(R.id.buttonAdminLoan);
         buttonUser = (Button) findViewById(R.id.buttonUser);
         buttonLoan = (Button) findViewById(R.id.buttonLoan);
-
+        tvStatus = (TextView) findViewById(R.id.textViewstatus);
         buttonAdminUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +87,10 @@ public class SearchActivity extends AppCompatActivity {
                         {
                             buttonLoan.setVisibility(View.VISIBLE);
 
+                        }
+                        else
+                        {
+                            tvStatus.setText("You do not have access to searching for loans");
                         }
                         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
 
