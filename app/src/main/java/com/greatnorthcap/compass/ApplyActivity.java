@@ -73,29 +73,36 @@ public class ApplyActivity extends AppCompatActivity {
                 Employment = editTextEmployment.getText().toString().trim();
                 JobTitle = editTextJobTitle.getText().toString().trim();
                 updateInformation();
-
-
             }
         });
         createLoanButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
-            loanDialog();
+                if(editTextFullName.getText().toString().trim().equals("") || editTextAddress.getText().toString().trim().equals("")
+                        || editTextPhoneNumber.getText().toString().trim().equals("") || editTextEmployment.getText().toString().trim().equals("")
+                        || editTextJobTitle.getText().toString().trim().equals("")) {
+                    Toast.makeText(ApplyActivity.this, "Please fill in all the required fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    loanDialog();
+                }
             }
         });
         uploadDocumentsButton.setOnClickListener( new View.OnClickListener()
-                                                  {
-                                                      @Override
-                                                      public  void onClick(View v) {
-                                                          startActivity(new Intent(ApplyActivity.this, BrokerLoanActivity.class));
-                                                      }
-
-                                                  }
-
-        );
-
+        {
+            @Override
+            public  void onClick(View v) {
+                if (editTextFullName.getText().toString().trim().equals("") || editTextAddress.getText().toString().trim().equals("")
+                        || editTextPhoneNumber.getText().toString().trim().equals("") || editTextEmployment.getText().toString().trim().equals("")
+                        || editTextJobTitle.getText().toString().trim().equals("")) {
+                    Toast.makeText(ApplyActivity.this, "Please fill in all the required fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    startActivity(new Intent(ApplyActivity.this, BrokerLoanActivity.class));
+                }
+            }
+        });
     }
+
     private void updateInformation()
     {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
@@ -105,14 +112,14 @@ public class ApplyActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        Toast.makeText(ApplyActivity.this, response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ApplyActivity.this, response, Toast.LENGTH_LONG).show();
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApplyActivity.this,error.toString(),Toast.LENGTH_LONG).show();
 
             }
         }){            @Override
