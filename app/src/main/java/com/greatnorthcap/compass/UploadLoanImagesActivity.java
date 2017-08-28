@@ -317,7 +317,7 @@ public class UploadLoanImagesActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(UploadLoanImagesActivity.this,response,Toast.LENGTH_LONG).show();
-                        //finish();
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
