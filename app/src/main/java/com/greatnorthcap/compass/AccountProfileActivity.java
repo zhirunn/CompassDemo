@@ -50,6 +50,7 @@ public class AccountProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         ID = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
         TextViewID = (TextView) findViewById(R.id.textViewUserId);
+        TextViewID.setText("User ID: " +ID);
         TextViewFullName = (TextView) findViewById(R.id.textViewFullName);
         TextViewAddress = (TextView) findViewById(R.id.textViewAddress);
         TextViewPhoneNumber= (TextView) findViewById(R.id.textViewPhoneNumber);
@@ -94,7 +95,7 @@ public class AccountProfileActivity extends AppCompatActivity {
             JSONArray JSONAr=  JSONobj.getJSONArray(UserPref.getJsonArray());
             JSONObject Row = JSONAr.getJSONObject(0);
 
-            TextViewID.setText("User ID: " + Row.getString("UserID"));
+
             TextViewFullName.setText("Full Name: " + Row.getString("FullName"));
             TextViewPhoneNumber.setText("Phone Number: " + Row.getString("PhoneNumber"));
             TextViewAddress.setText("Address: " + Row.getString("Address"));
