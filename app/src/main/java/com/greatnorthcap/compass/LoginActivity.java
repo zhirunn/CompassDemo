@@ -96,7 +96,7 @@ public class LoginActivity extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

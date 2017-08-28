@@ -47,7 +47,7 @@ public class SelectedLoanActivity extends AppCompatActivity {
         buttonDocuments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectedLoanActivity.this, UploadLoanImagesActivity.class));
+                startActivity(new Intent(SelectedLoanActivity.this, ViewLoanImagesActivity.class));
             }
         });
     }

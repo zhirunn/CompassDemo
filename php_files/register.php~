@@ -13,7 +13,6 @@
 			ob_end_clean();
 			echo "Registration could not be completed.";
 		}
-		mysqli_close($conn);
 	} else {
 		echo "Unexpected Error.";
 	}

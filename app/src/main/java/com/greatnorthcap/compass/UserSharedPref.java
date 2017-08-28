@@ -21,6 +21,7 @@ public class UserSharedPref {
     private static final String INSERTBROKERLOAN_URL = "https://greatnorthcap.000webhostapp.com/PHP/insertbrokerloan.php";
     private static final String BROKERLOANS_URL = "https://greatnorthcap.000webhostapp.com/PHP/brokerloans.php";
     private static final String NEWFOLDER_URL = "https://greatnorthcap.000webhostapp.com/PHP/newfolder.php";
+    private static final String SETLOAN_URL = "https://greatnorthcap.000webhostapp.com/PHP/setloanamount.php";
     private static final String KEY_USER_ID = "UserID";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
@@ -55,6 +56,7 @@ public class UserSharedPref {
     public String getNewfolderUrl() {return NEWFOLDER_URL;}
     public String getBrokerloansUrl() {return BROKERLOANS_URL;}
     public String getInsertbrokerloanUrl(){return INSERTBROKERLOAN_URL;}
+    public String getSetloanUrl() {return SETLOAN_URL;}
     public String getFullName() { return FULL_NAME;}
     public String getPhoneNumber() { return PHONE_NUMBER;}
     public String getAddress () { return ADDRESS;}

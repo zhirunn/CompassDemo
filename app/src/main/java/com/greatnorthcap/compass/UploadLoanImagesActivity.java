@@ -7,11 +7,21 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by aspiree15 on 02/08/17.
@@ -19,9 +29,12 @@ import com.squareup.picasso.Picasso;
 
 public class UploadLoanImagesActivity extends Activity {
     private UserSharedPref UserPref = new UserSharedPref();
+    public static final String KEY_AMOUNT = "AmountApproved";
+    public static final String KEY_LOANID = "LoanID";
     ImageButton imageBNinetyDayBankStatement, imageBFirstPayStub, imageBSecondPayStub, imageBThirdPayStub, imageBGovID, imageBEmploymentLetter, imageBAddressProof, imageBPreAuthorizedDebit, imageBSIN, imageBAnotherID, imageBPreAuthorizedAgreement;
     Boolean BankStatementURLCheck, FirstPayStubURLCheck, SecondPayStubURLCheck, ThirdPayStubURLCheck, DriversIDURLCheck, EmploymentLetterURLCheck, ProofOfAddressURLCheck, PreAuthorizedDebitURLCheck, SocialInsuranceNumberURLCheck, OtherIDURLCheck, PreAuthorizedAgreementURLCheck = false;
-    Button buttonApplyForLoan;
+    Button buttonApproveLoan;
+    EditText editTextSendAmount;
 
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
@@ -40,7 +53,9 @@ public class UploadLoanImagesActivity extends Activity {
         imageBSIN = findViewById(R.id.socialInsuranceNumberImageButton);
         imageBAnotherID = findViewById(R.id.anotherIDImageButton);
         imageBPreAuthorizedAgreement = findViewById(R.id.preauthorizedAgreementImageButton);
-        buttonApplyForLoan = findViewById(R.id.applyButton);
+        buttonApproveLoan = findViewById(R.id.approveButton);
+        editTextSendAmount = findViewById(R.id.sendAmountEditText);
+        buttonApproveLoan.setText("Set Amount");
 
         String BankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
         String FirstPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/FirstPayStub.jpg";
@@ -279,7 +294,7 @@ public class UploadLoanImagesActivity extends Activity {
             }
         });
 
-        buttonApplyForLoan.setOnClickListener(new View.OnClickListener() {
+        buttonApproveLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!BankStatementURLCheck || !FirstPayStubURLCheck || !SecondPayStubURLCheck || !ThirdPayStubURLCheck || !DriversIDURLCheck
@@ -287,10 +302,41 @@ public class UploadLoanImagesActivity extends Activity {
                         || !OtherIDURLCheck || !PreAuthorizedAgreementURLCheck) {
                     Toast.makeText(UploadLoanImagesActivity.this, "Please upload all of the required relevant documents.", Toast.LENGTH_LONG).show();
                 } else {
-                    //This toast needs to be changed.
-                    Toast.makeText(UploadLoanImagesActivity.this, "It Works.", Toast.LENGTH_LONG).show();
+                    setloanamount();
                 }
             }
         });
     }
+
+    private void setloanamount() {
+        final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        final String useramount = editTextSendAmount.getText().toString().trim();
+        final String loanid = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UserPref.getSetloanUrl(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(UploadLoanImagesActivity.this,response,Toast.LENGTH_LONG).show();
+                        //finish();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(UploadLoanImagesActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(KEY_AMOUNT, useramount);
+                params.put(KEY_LOANID, loanid);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
 }
