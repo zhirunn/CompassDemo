@@ -22,7 +22,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 public class UserProfileActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
 
-    private TextView textViewDisplayUser, textViewDisplayUserID;
+    private TextView textViewDisplayUser, textViewDisplayUserID, textViewDisplayUserFunds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,18 @@ public class UserProfileActivity extends AppCompatActivity {
 
         textViewDisplayUser = (TextView) findViewById(R.id.displayuser);
         textViewDisplayUserID = (TextView) findViewById(R.id.displayuserID);
+        textViewDisplayUserFunds = (TextView) findViewById(R.id.displayuserFunds);
 
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(UserPref.getEmailSharedPref(), "Not Available");
         String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
+        String money = sharedPreferences.getString(UserPref.getMoneySharedPref(), "Not Available");
+
 
         textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);
+        textViewDisplayUserFunds.setText("Funds: " + money);
+
     }
 
     private void logoutUser() {
