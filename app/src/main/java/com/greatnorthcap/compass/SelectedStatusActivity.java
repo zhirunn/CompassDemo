@@ -22,10 +22,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Dan on 8/14/2017.
+ * Created by Dan on 8/28/2017.
  */
 
-public class SelectedLoanActivity extends AppCompatActivity {
+public class SelectedStatusActivity extends AppCompatActivity {
     private TextView LoanIDTextView;
     private UserSharedPref UserPref = new UserSharedPref();
     private String ID;
@@ -33,11 +33,12 @@ public class SelectedLoanActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String Borrower;
     private TextView tvBorrower;
-    private Button buttonAcceptLoan;
+    private Button buttonRepayLoan;
     private String LenderID;
     private int LenderMoney;
     private int BorrowerMoney;
     private int amountransfer;
+    private String UserID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,21 +46,27 @@ public class SelectedLoanActivity extends AppCompatActivity {
         LoanIDTextView = (TextView) findViewById(R.id.tvLoanID);
         tvBorrower = (TextView) findViewById(R.id.tvBorrower);
         buttonDocuments = (Button) findViewById(R.id.buttonDocuments);
-        buttonAcceptLoan = (Button) findViewById(R.id.buttonAcceptLoan);
-        buttonAcceptLoan.setVisibility( View.VISIBLE);
+        buttonRepayLoan = (Button) findViewById(R.id.buttonRepay);
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         ID = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
-        LenderID = sharedPreferences.getString(UserPref.getUseridSharedPref(),"Not Available");
+        LenderID = sharedPreferences.getString("LenderID","Not Available");
         Borrower = sharedPreferences.getString(UserPref.getBorroweridSharedPref(),"Not Available");
+        UserID = sharedPreferences.getString(UserPref.getUseridSharedPref(),"Not Available");
         LoanIDTextView.setText("Loan ID: " + ID);
         SendRequest();
+
+        if (UserID.equalsIgnoreCase(Borrower))
+        {
+            buttonRepayLoan.setVisibility( View.VISIBLE);
+        }
+
         buttonDocuments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectedLoanActivity.this, ViewLoanImagesActivity.class));
+                startActivity(new Intent(SelectedStatusActivity.this, ViewLoanImagesActivity.class));
             }
         });
-        buttonAcceptLoan.setOnClickListener(new View.OnClickListener()
+        buttonRepayLoan.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public  void onClick(View v)
@@ -79,8 +86,8 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     public void onResponse(String response)
                     {
                         amountransfer = Integer.parseInt(response);
-                        LenderMoney = LenderMoney - amountransfer;
-                        BorrowerMoney = BorrowerMoney + amountransfer;
+                        LenderMoney = LenderMoney + amountransfer;
+                        BorrowerMoney = BorrowerMoney - amountransfer;
                         UpdateLenderMoney();
                     }
 
@@ -88,7 +95,7 @@ public class SelectedLoanActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
@@ -116,7 +123,7 @@ public class SelectedLoanActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
@@ -131,12 +138,12 @@ public class SelectedLoanActivity extends AppCompatActivity {
     }
     protected void UpdateLoanStatus()
     {
-        StringRequest stringgetfund = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/updateloanapproved.php",
+        StringRequest stringgetfund = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/updateloanrepaid.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response)
                     {
-                        Toast.makeText(SelectedLoanActivity.this,response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(SelectedStatusActivity.this,response,Toast.LENGTH_LONG).show();
                         finish();
                     }
 
@@ -144,7 +151,7 @@ public class SelectedLoanActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
@@ -166,14 +173,14 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     public void onResponse(String response)
                     {
 
-                       UpdateLoanStatus();
+                        UpdateLoanStatus();
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
@@ -195,14 +202,14 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                            UpdateBorrowerMoney();
+                        UpdateBorrowerMoney();
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
@@ -231,12 +238,12 @@ public class SelectedLoanActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         } )
         {            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+        protected Map<String, String> getParams() throws AuthFailureError {
             Map<String, String> params = new HashMap<>();
             params.put("id", LenderID);
             return params;
@@ -278,7 +285,7 @@ public class SelectedLoanActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(SelectedLoanActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         }){            @Override

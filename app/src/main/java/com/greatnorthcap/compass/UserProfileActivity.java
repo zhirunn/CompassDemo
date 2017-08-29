@@ -85,6 +85,10 @@ public class UserProfileActivity extends AppCompatActivity {
     {
         startActivity(new Intent(UserProfileActivity.this, ApplyActivity.class));
     }
+    private void loanstatus()
+    {
+        startActivity(new Intent(UserProfileActivity.this, LoanStatusActivity.class));
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -109,6 +113,10 @@ public class UserProfileActivity extends AppCompatActivity {
         if ( id==R.id.action_apply)
         {
             apply();
+        }
+        if (id == R.id.action_loanstatus)
+        {
+            loanstatus();
         }
         return super.onOptionsItemSelected(item);
     }

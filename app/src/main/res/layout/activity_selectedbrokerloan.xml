@@ -21,4 +21,18 @@
         android:layout_height="wrap_content"
         android:text="View uploaded documents" />
 
+    <Button
+        android:id="@+id/buttonAcceptLoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fund Loan"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/buttonRepay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repay Loan"
+        android:visibility="gone" />
+
 </LinearLayout>
