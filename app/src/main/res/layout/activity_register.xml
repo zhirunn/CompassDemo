@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
+    <!--android:background="@color/colorBackground"-->
+
 
     <ImageView
         android:contentDescription="@string/compasslogo"
@@ -74,7 +75,6 @@
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:text="Register"
-        android:background="@color/colorButtonNegative"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,5 +82,6 @@
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="63dp"
         app:layout_constraintLeft_toLeftOf="parent" />
+    <!--android:background="@color/colorButtonNegative"-->
 
 </android.support.constraint.ConstraintLayout>
