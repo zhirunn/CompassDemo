@@ -74,9 +74,12 @@ public class SelectedStatusActivity extends AppCompatActivity {
             public  void onClick(View v)
             {
                 TransferRequest();
-
-
-
+            }
+        });
+        buttonRepayLoanEther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SelectedStatusActivity.this, ViewLoanImagesActivity.class));
             }
         });
     }

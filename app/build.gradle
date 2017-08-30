@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.ethereum:geth:1.6.7'
+    compile 'de.petendi:ethereum-android-lib:0.2.1'
 }
