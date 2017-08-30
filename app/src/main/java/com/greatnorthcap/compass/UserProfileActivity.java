@@ -12,6 +12,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
@@ -21,6 +36,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
 public class UserProfileActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
+    public static final String KEY_USERID = "UserID";
 
     private TextView textViewDisplayUser, textViewDisplayUserID, textViewDisplayUserFunds;
 
@@ -39,11 +55,52 @@ public class UserProfileActivity extends AppCompatActivity {
         String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
         String money = sharedPreferences.getString(UserPref.getMoneySharedPref(), "Not Available");
 
-
         textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);
         textViewDisplayUserFunds.setText("Funds: " + money);
 
+        displaymoney();
+
+    }
+
+    private void displaymoney() {
+        SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        final String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/displaymoney.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String money;
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
+                            JSONObject UserData = result.getJSONObject(0);
+                            money = UserData.getString(UserPref.getKeyMoney());
+                            SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+                            SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+                            prefEditor.putString(UserPref.getMoneySharedPref(), money);
+                            prefEditor.commit();
+                            textViewDisplayUserFunds.setText("Funds: " + money);
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(UserProfileActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(KEY_USERID, userid);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     private void logoutUser() {

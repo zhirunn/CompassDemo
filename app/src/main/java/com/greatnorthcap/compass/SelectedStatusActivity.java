@@ -33,7 +33,7 @@ public class SelectedStatusActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String Borrower;
     private TextView tvBorrower;
-    private Button buttonRepayLoan;
+    private Button buttonRepayLoan, buttonRepayLoanEther;
     private String LenderID;
     private int LenderMoney;
     private int BorrowerMoney;
@@ -47,6 +47,7 @@ public class SelectedStatusActivity extends AppCompatActivity {
         tvBorrower = (TextView) findViewById(R.id.tvBorrower);
         buttonDocuments = (Button) findViewById(R.id.buttonDocuments);
         buttonRepayLoan = (Button) findViewById(R.id.buttonRepay);
+        buttonRepayLoanEther = (Button) findViewById(R.id.buttonRepayEther);
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         ID = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
         LenderID = sharedPreferences.getString("LenderID","Not Available");
@@ -58,6 +59,7 @@ public class SelectedStatusActivity extends AppCompatActivity {
         if (UserID.equalsIgnoreCase(Borrower))
         {
             buttonRepayLoan.setVisibility( View.VISIBLE);
+            buttonRepayLoanEther.setVisibility( View.VISIBLE);
         }
 
         buttonDocuments.setOnClickListener(new View.OnClickListener() {

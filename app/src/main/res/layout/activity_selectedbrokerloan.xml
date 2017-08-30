@@ -35,4 +35,11 @@
         android:text="Repay Loan"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/buttonRepayEther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repay Loan Using Ethereum"
+        android:visibility="gone" />
+
 </LinearLayout>
