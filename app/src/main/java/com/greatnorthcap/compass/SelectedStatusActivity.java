@@ -85,10 +85,25 @@ public class SelectedStatusActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        amountransfer = Integer.parseInt(response);
-                        LenderMoney = LenderMoney + amountransfer;
-                        BorrowerMoney = BorrowerMoney - amountransfer;
-                        UpdateLenderMoney();
+                        if (response.equalsIgnoreCase(""))
+                        {
+                            amountransfer = 0;
+                        }
+                        else
+                        {
+                            amountransfer = Integer.parseInt(response);
+
+                        }
+                        if(BorrowerMoney - amountransfer < 0)
+                        {
+                            Toast.makeText(SelectedStatusActivity.this,"You do not have the funds to repay this loan",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else {
+                            LenderMoney = LenderMoney + amountransfer;
+                            BorrowerMoney = BorrowerMoney - amountransfer;
+                            UpdateLenderMoney();
+                        }
                     }
 
                 }, new Response.ErrorListener() {
@@ -115,6 +130,10 @@ public class SelectedStatusActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
+                        if(response.equalsIgnoreCase(""))
+                        {
+                            BorrowerMoney = 0;
+                        }
                         BorrowerMoney = Integer.parseInt(response);
                         GetAmount();
                     }
@@ -230,7 +249,15 @@ public class SelectedStatusActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        LenderMoney = Integer.parseInt(response);
+                        if (response.equalsIgnoreCase(""))
+                        {
+                            LenderMoney = 0;
+                        }
+                        else
+                        {
+                            LenderMoney = Integer.parseInt(response);
+
+                        }
                         GetBorrowerMoney();
                     }
 

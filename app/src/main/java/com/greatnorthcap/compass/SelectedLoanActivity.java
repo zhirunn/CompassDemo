@@ -78,10 +78,26 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        amountransfer = Integer.parseInt(response);
-                        LenderMoney = LenderMoney - amountransfer;
-                        BorrowerMoney = BorrowerMoney + amountransfer;
-                        UpdateLenderMoney();
+                        if(response.equalsIgnoreCase(""))
+                        {
+                            amountransfer =0;
+                        }
+                        else
+                        {
+                           amountransfer = Integer.parseInt(response);
+
+                        }
+                        if(LenderMoney - amountransfer < 0)
+                        {
+                            Toast.makeText(SelectedLoanActivity.this,"You have insufficient funds to lend money", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else {
+                            LenderMoney = LenderMoney - amountransfer;
+                            BorrowerMoney = BorrowerMoney + amountransfer;
+                            UpdateLenderMoney();
+                        }
+
                     }
 
                 }, new Response.ErrorListener() {
@@ -108,7 +124,15 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        BorrowerMoney = Integer.parseInt(response);
+                        if(response.equalsIgnoreCase(""))
+                        {
+                            BorrowerMoney = 0;
+                        }
+                        else
+                        {
+                            BorrowerMoney = Integer.parseInt(response);
+
+                        }
                         GetAmount();
                     }
 
@@ -223,7 +247,14 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        LenderMoney = Integer.parseInt(response);
+                        if(response.equalsIgnoreCase(""))
+                        {
+                            LenderMoney = 0;
+                        }
+                        else{
+                            LenderMoney = Integer.parseInt(response);
+
+                        }
                         GetBorrowerMoney();
                     }
 
