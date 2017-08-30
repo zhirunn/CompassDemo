@@ -54,7 +54,7 @@ public class SelectedStatusActivity extends AppCompatActivity {
         UserID = sharedPreferences.getString(UserPref.getUseridSharedPref(),"Not Available");
         LoanIDTextView.setText("Loan ID: " + ID);
         SendRequest();
-
+        CheckRepaid();
         if (UserID.equalsIgnoreCase(Borrower))
         {
             buttonRepayLoan.setVisibility( View.VISIBLE);
@@ -77,6 +77,37 @@ public class SelectedStatusActivity extends AppCompatActivity {
 
             }
         });
+    }
+    protected void CheckRepaid()
+    {
+        StringRequest stringgetfund = new StringRequest(Request.Method.POST, "https://greatnorthcap.000webhostapp.com/PHP/checkrepay.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        if(response.equalsIgnoreCase("Repaid"))
+                        {
+                            buttonRepayLoan.setVisibility( View.GONE);
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toast.makeText(SelectedStatusActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+
+            }
+        } )
+        {            @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("id",ID);
+            return params;
+        }} ;
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringgetfund);
+
     }
     protected void GetAmount()
     {
