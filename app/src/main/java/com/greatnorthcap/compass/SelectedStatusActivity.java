@@ -55,13 +55,12 @@ public class SelectedStatusActivity extends AppCompatActivity {
         UserID = sharedPreferences.getString(UserPref.getUseridSharedPref(),"Not Available");
         LoanIDTextView.setText("Loan ID: " + ID);
         SendRequest();
-        CheckRepaid();
         if (UserID.equalsIgnoreCase(Borrower))
         {
-            buttonRepayLoan.setVisibility( View.VISIBLE);
-            buttonRepayLoanEther.setVisibility( View.VISIBLE);
+            //buttonRepayLoan.setVisibility( View.VISIBLE);
+            //buttonRepayLoanEther.setVisibility( View.VISIBLE);
+            CheckRepaid();
         }
-
         buttonDocuments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +78,7 @@ public class SelectedStatusActivity extends AppCompatActivity {
         buttonRepayLoanEther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectedStatusActivity.this, ViewLoanImagesActivity.class));
+                startActivity(new Intent(SelectedStatusActivity.this, SampleListActivity.class));
             }
         });
     }
@@ -92,7 +91,12 @@ public class SelectedStatusActivity extends AppCompatActivity {
                     {
                         if(response.equalsIgnoreCase("Repaid"))
                         {
-                            buttonRepayLoan.setVisibility( View.GONE);
+                            buttonRepayLoan.setVisibility(View.GONE);
+                            buttonRepayLoanEther.setVisibility(View.GONE);
+                        }
+                        else {
+                            buttonRepayLoan.setVisibility( View.VISIBLE);
+                            buttonRepayLoanEther.setVisibility( View.VISIBLE);
                         }
                     }
 

@@ -82,6 +82,15 @@
         <activity android:name=".SelectedStatusActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".AccountBalanceActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".SampleListActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".SimpleStorageActivity"
+            android:label="@string/app_name">
+        </activity>
 
     </application>
     
