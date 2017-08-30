@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,10 +32,12 @@ public class UploadLoanImagesActivity extends Activity {
     private UserSharedPref UserPref = new UserSharedPref();
     public static final String KEY_AMOUNT = "AmountApproved";
     public static final String KEY_LOANID = "LoanID";
+    String Borrower, UserID;
     ImageButton imageBNinetyDayBankStatement, imageBFirstPayStub, imageBSecondPayStub, imageBThirdPayStub, imageBGovID, imageBEmploymentLetter, imageBAddressProof, imageBPreAuthorizedDebit, imageBSIN, imageBAnotherID, imageBPreAuthorizedAgreement;
     Boolean BankStatementURLCheck, FirstPayStubURLCheck, SecondPayStubURLCheck, ThirdPayStubURLCheck, DriversIDURLCheck, EmploymentLetterURLCheck, ProofOfAddressURLCheck, PreAuthorizedDebitURLCheck, SocialInsuranceNumberURLCheck, OtherIDURLCheck, PreAuthorizedAgreementURLCheck = false;
     Button buttonApproveLoan;
     EditText editTextSendAmount;
+    TextView textViewLoanAmount;
 
     protected void onCreate(Bundle savedInstanceState) {
         final SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
@@ -42,6 +45,8 @@ public class UploadLoanImagesActivity extends Activity {
         String loanid = sharedPreferences.getString(UserPref.getSearchedloanidSharedPref(), "Not Available");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadloanimages);
+        Borrower = sharedPreferences.getString(UserPref.getBorroweridSharedPref(),"Not Available");
+        UserID = sharedPreferences.getString(UserPref.getUseridSharedPref(),"Not Available");
         imageBNinetyDayBankStatement = findViewById(R.id.ninetyDayBankStatementImageButton);
         imageBFirstPayStub = findViewById(R.id.firstRecentPayStubImageButton);
         imageBSecondPayStub = findViewById(R.id.secondRecentPayStubImageButton);
@@ -53,9 +58,17 @@ public class UploadLoanImagesActivity extends Activity {
         imageBSIN = findViewById(R.id.socialInsuranceNumberImageButton);
         imageBAnotherID = findViewById(R.id.anotherIDImageButton);
         imageBPreAuthorizedAgreement = findViewById(R.id.preauthorizedAgreementImageButton);
+        textViewLoanAmount = findViewById(R.id.loanAmountTextView);
         buttonApproveLoan = findViewById(R.id.approveButton);
         editTextSendAmount = findViewById(R.id.sendAmountEditText);
         buttonApproveLoan.setText("Set Amount");
+
+        if (UserID.equalsIgnoreCase(Borrower))
+        {
+            editTextSendAmount.setVisibility(View.VISIBLE);
+            buttonApproveLoan.setVisibility(View.VISIBLE);
+            textViewLoanAmount.setVisibility(View.VISIBLE);
+        }
 
         String BankStatementURL = UserPref.getServerAddress() + "Images/" + loanid + "/BankStatement.jpg";
         String FirstPayStubURL = UserPref.getServerAddress() + "Images/" + loanid + "/FirstPayStub.jpg";
