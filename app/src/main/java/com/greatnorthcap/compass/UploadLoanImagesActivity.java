@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -83,7 +84,7 @@ public class UploadLoanImagesActivity extends Activity {
         String PreAuthorizedAgreementURL = UserPref.getServerAddress() + "Images/" + loanid + "/PreAuthorizedAgreement.jpg";
 
         try {
-            Picasso.with(this).load(BankStatementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBNinetyDayBankStatement, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(BankStatementURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBNinetyDayBankStatement, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     BankStatementURLCheck = true;
@@ -93,7 +94,7 @@ public class UploadLoanImagesActivity extends Activity {
                     BankStatementURLCheck = false;
                 }
             });
-            Picasso.with(this).load(FirstPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBFirstPayStub, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(FirstPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBFirstPayStub, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     FirstPayStubURLCheck = true;
@@ -103,7 +104,7 @@ public class UploadLoanImagesActivity extends Activity {
                     FirstPayStubURLCheck = false;
                 }
             });
-            Picasso.with(this).load(SecondPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBSecondPayStub, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(SecondPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBSecondPayStub, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     SecondPayStubURLCheck = true;
@@ -113,7 +114,7 @@ public class UploadLoanImagesActivity extends Activity {
                     SecondPayStubURLCheck = false;
                 }
             });
-            Picasso.with(this).load(ThirdPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBThirdPayStub, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(ThirdPayStubURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBThirdPayStub, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     ThirdPayStubURLCheck = true;
@@ -123,7 +124,7 @@ public class UploadLoanImagesActivity extends Activity {
                     ThirdPayStubURLCheck = false;
                 }
             });
-            Picasso.with(this).load(DriversIDURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBGovID, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(DriversIDURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBGovID, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     DriversIDURLCheck = true;
@@ -133,7 +134,7 @@ public class UploadLoanImagesActivity extends Activity {
                     DriversIDURLCheck = false;
                 }
             });
-            Picasso.with(this).load(EmploymentLetterURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBEmploymentLetter, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(EmploymentLetterURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBEmploymentLetter, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     EmploymentLetterURLCheck = true;
@@ -143,7 +144,7 @@ public class UploadLoanImagesActivity extends Activity {
                     EmploymentLetterURLCheck = false;
                 }
             });
-            Picasso.with(this).load(ProofOfAddressURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBAddressProof, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(ProofOfAddressURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBAddressProof, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     ProofOfAddressURLCheck = true;
@@ -153,7 +154,7 @@ public class UploadLoanImagesActivity extends Activity {
                     ProofOfAddressURLCheck = false;
                 }
             });
-            Picasso.with(this).load(PreAuthorizedDebitURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBPreAuthorizedDebit, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(PreAuthorizedDebitURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBPreAuthorizedDebit, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     PreAuthorizedDebitURLCheck = true;
@@ -163,7 +164,7 @@ public class UploadLoanImagesActivity extends Activity {
                     PreAuthorizedDebitURLCheck = false;
                 }
             });
-            Picasso.with(this).load(SocialInsuranceNumberURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBSIN, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(SocialInsuranceNumberURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBSIN, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     SocialInsuranceNumberURLCheck = true;
@@ -173,7 +174,7 @@ public class UploadLoanImagesActivity extends Activity {
                     SocialInsuranceNumberURLCheck = false;
                 }
             });
-            Picasso.with(this).load(OtherIDURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBAnotherID, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(OtherIDURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBAnotherID, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     OtherIDURLCheck = true;
@@ -183,7 +184,7 @@ public class UploadLoanImagesActivity extends Activity {
                     OtherIDURLCheck = false;
                 }
             });
-            Picasso.with(this).load(PreAuthorizedAgreementURL).networkPolicy(NetworkPolicy.NO_CACHE).into(imageBPreAuthorizedAgreement, new com.squareup.picasso.Callback() {
+            Picasso.with(this).load(PreAuthorizedAgreementURL).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageBPreAuthorizedAgreement, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
                     PreAuthorizedAgreementURLCheck = true;
