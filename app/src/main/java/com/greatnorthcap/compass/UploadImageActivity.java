@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+
 /**
  * Created by aspiree15 on 11/07/17.
  */
@@ -103,7 +105,12 @@ public class UploadImageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(UploadImageActivity.this, response, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(UploadImageActivity.this, UploadLoanImagesActivity.class));
+                        finish();
+                        Intent intent = new Intent(UploadImageActivity.this, UploadLoanImagesActivity.class);
+                        //startActivity(new Intent(UploadImageActivity.this, UploadLoanImagesActivity.class));
+                        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
                         //an Intent should be used to change pages after the user successfully uploaded their image.
                     }
                 },
