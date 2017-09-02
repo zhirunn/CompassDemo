@@ -106,6 +106,7 @@ public class ApplyActivity extends AppCompatActivity {
     private void updateInformation()
     {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
+        //final String Grade = sharedPreferences.getString(UserPref.getUserGradeSharedPref(), "Not Available");
         final String ID = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Null");
         StringRequest stringGetRequest = new StringRequest(Request.Method.POST, UserPref.getUpdateinformationUrl(),
                 new Response.Listener<String>(){
@@ -132,8 +133,7 @@ public class ApplyActivity extends AppCompatActivity {
             params.put(UserPref.getEmployment(),Employment);
             params.put(UserPref.getJOB_Title(),JobTitle);
             return params;
-        }}
-                ;
+        }};
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringGetRequest);
     }
@@ -232,6 +232,7 @@ public class ApplyActivity extends AppCompatActivity {
     {
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         final String ID = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Null");
+        final String Grade = sharedPreferences.getString(UserPref.getUserGradeSharedPref(), "Null");
         StringRequest stringGetRequest = new StringRequest(Request.Method.POST, UserPref.getInsertbrokerloanUrl(),
                 new Response.Listener<String>(){
                     @Override
@@ -252,6 +253,7 @@ public class ApplyActivity extends AppCompatActivity {
         protected Map<String, String> getParams() throws AuthFailureError {
             Map<String, String> params = new HashMap<>();
             params.put(UserPref.getKeyUserId(),ID);
+            params.put(UserPref.getKeyGrade(),Grade);
             return params;
         }};
 

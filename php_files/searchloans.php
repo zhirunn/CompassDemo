@@ -11,7 +11,9 @@
 		{
 		$sql = "SELECT * FROM Loans INNER JOIN Users ON
                 Loans.BorrowerID = Users.UserID
-                WHERE BorrowerType = '$lender'";
+                WHERE Users.BorrowerType = '$lender'
+					AND Status ='Pending'
+					ORDER BY Loans.LoanID ";
 		}
 		$res = mysqli_query($conn, $sql);
         $result = array();
@@ -25,6 +27,7 @@
                     "PaymentDue" =>$row['PaymentDue'],
                     "Principal" =>$row['Principal'],
                     "Interest" =>$row['Interest'],
+                    "Grade" =>$row['Grade'],
                     "Status" =>$row['Status'],
                     "BorrowerID" =>$row['BorrowerID'],
                     "LenderID" =>$row['LenderID'],

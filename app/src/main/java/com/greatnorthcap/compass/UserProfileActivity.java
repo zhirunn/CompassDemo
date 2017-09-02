@@ -38,7 +38,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private UserSharedPref UserPref = new UserSharedPref();
     public static final String KEY_USERID = "UserID";
 
-    private TextView textViewDisplayUser, textViewDisplayUserID, textViewDisplayUserFunds;
+    private TextView textViewDisplayUser, textViewDisplayUserID, textViewDisplayUserFunds, textViewDisplayUserGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +49,19 @@ public class UserProfileActivity extends AppCompatActivity {
         textViewDisplayUser = (TextView) findViewById(R.id.displayuser);
         textViewDisplayUserID = (TextView) findViewById(R.id.displayuserID);
         textViewDisplayUserFunds = (TextView) findViewById(R.id.displayuserFunds);
+        textViewDisplayUserGrade = (TextView) findViewById(R.id.displayuserGrade);
 
         SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(UserPref.getEmailSharedPref(), "Not Available");
         String userid = sharedPreferences.getString(UserPref.getUseridSharedPref(), "Not Available");
         String money = sharedPreferences.getString(UserPref.getMoneySharedPref(), "Not Available");
+        String grade = sharedPreferences.getString(UserPref.getUserGradeSharedPref(), "Not Available");
 
         textViewDisplayUser.setText("Current User: " + email);
         textViewDisplayUserID.setText("Current UserID: " + userid);
         textViewDisplayUserFunds.setText("Funds: " + money);
+        textViewDisplayUserGrade.setText("Grade: " + grade);
+
 
         displaymoney();
 

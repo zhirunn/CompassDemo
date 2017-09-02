@@ -8,7 +8,8 @@
 	 	array_push($result, array(
  			"Email"=>$res['Email'],
  			"UserID"=>$res['UserID'],
- 			"Money"=>$res['Money']
+ 			"Money"=>$res['Money'],
+ 			"Grade"=>$res['Grade']
  			)
  		);
  		ob_clean();

@@ -80,16 +80,19 @@ public class LoginActivity extends Activity {
                     public void onResponse(String response) {
                         String UserID;
                         String Money;
+                        String Grade;
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray result = jsonObject.getJSONArray(UserPref.getJsonArray());
                             JSONObject UserData = result.getJSONObject(0);
                             UserID = UserData.getString(UserPref.getKeyUserId());
                             Money = UserData.getString(UserPref.getKeyMoney());
+                            Grade = UserData.getString(UserPref.getKeyGrade());
                             SharedPreferences sharedPreferences = getSharedPreferences(UserPref.getSharedPrefName(), Context.MODE_PRIVATE);
                             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
                             prefEditor.putString(UserPref.getUseridSharedPref(), UserID);
                             prefEditor.putString(UserPref.getMoneySharedPref(), Money);
+                            prefEditor.putString(UserPref.getUserGradeSharedPref(), Grade);
                             prefEditor.commit();
                         } catch (JSONException e){
                             e.printStackTrace();

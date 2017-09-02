@@ -1,8 +1,8 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=='POST') {
-		$id = $_POST['UserID'];
+		$id = $_POST['id'];
 		require_once "connect.php";
-		$sql = "SELECT * FROM Loans WHERE BorrowerID = '$id'";
+		$sql = "SELECT * FROM Loans WHERE BorrowerID = '$id' OR LenderID = '$id'";
 		$res = mysqli_query($conn, $sql);
         $result = array();
 
@@ -15,7 +15,6 @@
                     "PaymentDue" =>$row['PaymentDue'],
                     "Principal" =>$row['Principal'],
                     "Interest" =>$row['Interest'],
-                    "Grade" =>$row['Grade'],
                     "Status" =>$row['Status'],
                     "BorrowerID" =>$row['BorrowerID'],
                     "LenderID" =>$row['LenderID'],
@@ -23,8 +22,6 @@
                     )
                  );
 }
-
-
         ob_clean();
         echo json_encode(array("Result"=>$result));
         mysqli_close($conn);

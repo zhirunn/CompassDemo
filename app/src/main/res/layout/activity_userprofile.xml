@@ -24,4 +24,11 @@
         android:text="There is no user funds currently to display"
         android:id="@+id/displayuserFunds" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="There is no user grade currently to display"
+        android:id="@+id/displayuserGrade" />
+
 </LinearLayout>

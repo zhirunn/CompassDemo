@@ -39,6 +39,7 @@ public class BrokerLoanActivity extends AppCompatActivity {
     private String[] PaymentDue;
     private String[] Principal;
     private String[] Interest;
+    private String[] Grade;
     private String[] Status;
     private String[] BorrowerID;
     private String[] LenderID;
@@ -110,6 +111,7 @@ public class BrokerLoanActivity extends AppCompatActivity {
             PaymentDue = new String[loans.length()];
             Principal = new String[loans.length()];
             Interest = new String[loans.length()];
+            Grade = new String[loans.length()];
             Status = new String[loans.length()];
             BorrowerID = new String[loans.length()];
             LenderID = new String[loans.length()];
@@ -124,12 +126,13 @@ public class BrokerLoanActivity extends AppCompatActivity {
                 PaymentDue[i] = JO.getString("PaymentDue");
                 Principal[i] = JO.getString("Principal");
                 Interest[i] = JO.getString("Interest");
+                Grade[i] = JO.getString("Grade");
                 Status[i] = JO.getString("Status");
                 BorrowerID[i] = JO.getString("BorrowerID");
                 LenderID[i] = JO.getString("LenderID");
                 DateLastModified[i] = JO.getString("DateLastModified");
             }
-            Loan ShowLoans = new Loan(this, LoanIds, AmountsApproved, APR, TermDate, PaymentDue, Principal, Interest, Status, BorrowerID, LenderID, DateLastModified);
+            Loan ShowLoans = new Loan(this, LoanIds, AmountsApproved, APR, TermDate, PaymentDue, Principal, Interest, Grade, Status, BorrowerID, LenderID, DateLastModified);
             listViewBrokerLoans.setAdapter(ShowLoans);
         }
         catch (JSONException e)

@@ -15,6 +15,7 @@
                     "PaymentDue" =>$row['PaymentDue'],
                     "Principal" =>$row['Principal'],
                     "Interest" =>$row['Interest'],
+                    "Grade" =>$row['Grade'],
                     "Status" =>$row['Status'],
                     "BorrowerID" =>$row['BorrowerID'],
                     "LenderID" =>$row['LenderID'],

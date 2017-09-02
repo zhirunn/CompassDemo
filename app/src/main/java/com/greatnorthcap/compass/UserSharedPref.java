@@ -28,9 +28,11 @@ public class UserSharedPref {
     private static final String KEY_IMAGE = "Image";
     private static final String KEY_NAME = "Name";
     private static final String KEY_MONEY = "Money";
+    private static final String KEY_GRADE = "Grade";
     private static final String LOGIN_SUCCESS = "Success";
     private static final String SHARED_PREF_NAME = "SharedPref";
     private static final String USERID_SHARED_PREF = "UserID";
+    private static final String USERGRADE_SHARED_PREF = "N/A";
     private static final String EMAIL_SHARED_PREF = "Email";
     private static final String MONEY_SHARED_PREF = "Money";
     private static final String LOGGEDIN_SHARED_PREF = "LoggedIn";
@@ -93,6 +95,9 @@ public class UserSharedPref {
     public String getKeyEmail() {
         return KEY_EMAIL;
     }
+    public String getKeyGrade() {
+        return KEY_GRADE;
+    }
     public String getKeyPassword() {
         return KEY_PASSWORD;
     }
@@ -111,6 +116,9 @@ public class UserSharedPref {
     }
     public String getUseridSharedPref() {
         return USERID_SHARED_PREF;
+    }
+    public String getUserGradeSharedPref() {
+        return USERGRADE_SHARED_PREF;
     }
     public String getEmailSharedPref() {
         return EMAIL_SHARED_PREF;
