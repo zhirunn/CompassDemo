@@ -13,10 +13,10 @@
 		ORDER BY Loans.LoanID ";
 		} else if($grade == 'A+B')
 		{
-		$sql = "SELECT * FROM Loans WHERE Grade='A' OR Grade='B' AND Status ='Pending' ORDER BY Loans.LoanID";
+		$sql = "SELECT * FROM Loans WHERE Grade='A' AND Status ='Pending' OR Grade='B' AND Status ='Pending' ORDER BY Loans.LoanID";
 		} else if($grade == 'B+C')
 		{
-		$sql = "SELECT * FROM Loans WHERE Grade='B' OR Grade='C' AND Status ='Pending' ORDER BY Loans.LoanID";
+		$sql = "SELECT * FROM Loans WHERE Grade='B' AND Status ='Pending' OR Grade='C' AND Status ='Pending' ORDER BY Loans.LoanID";
 		} else {
 			$sql = "SELECT * FROM Loans WHERE Grade = '$grade' AND Status ='Pending' ORDER BY Loans.LoanID ";		
 		}

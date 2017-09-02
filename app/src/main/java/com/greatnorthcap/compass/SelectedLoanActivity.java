@@ -21,6 +21,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
+
 /**
  * Created by Dan on 8/14/2017.
  */
@@ -161,6 +163,9 @@ public class SelectedLoanActivity extends AppCompatActivity {
                     public void onResponse(String response)
                     {
                         Toast.makeText(SelectedLoanActivity.this,response,Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SelectedLoanActivity.this, UserProfileActivity.class);
+                        intent.setFlags(FLAG_ACTIVITY_NO_HISTORY);
+                        startActivity(intent);
                         finish();
                     }
 
